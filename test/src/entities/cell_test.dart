@@ -4,5 +4,6 @@ import 'package:test/test.dart';
 void main() {
   test('init_cell', () {
     final cell = Cell();
+    expect(cell.isAlive.runtimeType, bool);
   });
 }
