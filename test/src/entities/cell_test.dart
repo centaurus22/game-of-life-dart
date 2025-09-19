@@ -33,6 +33,11 @@ void main() {
       cell.nextStepCalculate(neighborsLiving: 4);
       expect(cell.isAlive, false);
     });
+
+    test('clone_cell', () {
+      cell = cell.clone();
+      expect(cell.isAlive, true);
+    });
   });
 
   group('cell_starts_dead', () {
@@ -52,6 +57,11 @@ void main() {
 
     test('stays_dead_when_less_than_three_live_neighbors', () {
       cell.nextStepCalculate(neighborsLiving: 2);
+      expect(cell.isAlive, false);
+    });
+
+    test('clone_cell', () {
+      cell = cell.clone();
       expect(cell.isAlive, false);
     });
   });

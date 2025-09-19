@@ -26,4 +26,8 @@ final class Cell {
       _isAlive = false;
     }
   }
+
+  Cell clone() {
+    return Cell.isAlive(_isAlive);
+  }
 }
