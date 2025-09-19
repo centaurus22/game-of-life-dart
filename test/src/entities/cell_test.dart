@@ -18,7 +18,7 @@ void main() {
     expect(cell.isAlive, false);
   });
 
-    test('live_when_less_two_live_neighbors', () {
+  test('live_when_less_two_live_neighbors', () {
     cell.isAlive = true;
     cell.nextStepCalculate(2);
     expect(cell.isAlive, true);
