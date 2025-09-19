@@ -17,4 +17,10 @@ void main() {
     cell.nextStepCalculate(1);
     expect(cell.isAlive, false);
   });
+
+    test('live_when_less_two_live_neighbors', () {
+    cell.isAlive = true;
+    cell.nextStepCalculate(2);
+    expect(cell.isAlive, true);
+  });
 }
