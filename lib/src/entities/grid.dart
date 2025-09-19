@@ -2,7 +2,7 @@ import 'package:game_of_life_dart/src/entities/cell.dart';
 
 /// The cell grid in Conway's Game of Life
 class Grid {
-  //The cells on this grid
+  /// The cells on this grid
   List<List<Cell>> _cells = [[]];
 
   /// The [height] and [width] can not be negative
