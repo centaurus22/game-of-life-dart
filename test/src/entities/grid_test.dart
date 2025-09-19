@@ -18,4 +18,30 @@ void main() {
     expect(grid.asBools.length, 2);
     expect(grid.asBools[0].length, 3);
   });
+
+  test('do a simulation step', () {
+    var grid = Grid.cells([
+      [false, false, false],
+      [false, true, false],
+      [false, false, false],
+    ]);
+    grid.nextStepCalculate();
+    expect(grid.asBools, [
+      [false, false, false],
+      [false, false, false],
+      [false, false, false],
+    ]);
+  });
+
+  test('do a 2x2 simulation step', () {
+    var grid = Grid.cells([
+      [true, true],
+      [true, true],
+    ]);
+    grid.nextStepCalculate();
+    expect(grid.asBools, [
+      [false, false],
+      [false, false],
+    ]);
+  });
 }
