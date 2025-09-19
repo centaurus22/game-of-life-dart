@@ -11,7 +11,7 @@ final class Cell {
   }
 
   /// Set a value for testing purposes
-  Cell.isAlive(bool isAlive);
+  Cell.isAlive(this._isAlive);
 
   /// Whether the cell is alive
   bool get isAlive => _isAlive;
@@ -20,10 +20,14 @@ final class Cell {
   ///
   /// A cell can have 0 to 8 live neighbors.
   void nextStepCalculate({required int neighborsLiving}) {
-    if (neighborsLiving == 2 || neighborsLiving == 3) {
+    if (!_isAlive) {
       _isAlive = true;
     } else {
-      _isAlive = false;
+      if (neighborsLiving == 2 || neighborsLiving == 3) {
+        _isAlive = true;
+      } else {
+        _isAlive = false;
+      }
     }
   }
 }
