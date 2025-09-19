@@ -15,7 +15,7 @@ final class Cell {
   ///
   ///A cell can have 0 to 9 live neighbors
   void nextStepCalculate(int neighborsLiving) {
-    if (neighborsLiving == 2) {
+    if (neighborsLiving >= 2) {
       isAlive = true;
     } else {
       isAlive = false;
