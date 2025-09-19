@@ -5,16 +5,24 @@ import 'dart:math';
 /// Setting whether the cell is alive is only for testing purposes
 final class Cell {
   /// Whether the cell is alive
-  var isAlive = Random().nextBool();
+  late bool _isAlive;
+
+  Cell() {
+    _isAlive = Random().nextBool();
+  }
+
+  Cell.isAlive(bool isAlive);
+
+  bool get isAlive => _isAlive;
 
   /// Calculate the live status by setting the current number of live neighbors
   ///
   /// A cell can have 0 to 8 live neighbors.
   void nextStepCalculate({required int neighborsLiving}) {
     if (neighborsLiving == 2 || neighborsLiving == 3) {
-      isAlive = true;
+      _isAlive = true;
     } else {
-      isAlive = false;
+      _isAlive = false;
     }
   }
 }
