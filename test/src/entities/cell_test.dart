@@ -44,5 +44,15 @@ void main() {
       cell.nextStepCalculate(neighborsLiving: 3);
       expect(cell.isAlive, true);
     });
+
+    test('stays_dead_when_more_than_three_live_neighbors', () {
+      cell.nextStepCalculate(neighborsLiving: 4);
+      expect(cell.isAlive, false);
+    });
+
+    test('stays_dead_when_less_than_three_live_neighbors', () {
+      cell.nextStepCalculate(neighborsLiving: 2);
+      expect(cell.isAlive, false);
+    });
   });
 }

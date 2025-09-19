@@ -20,14 +20,10 @@ final class Cell {
   ///
   /// A cell can have 0 to 8 live neighbors.
   void nextStepCalculate({required int neighborsLiving}) {
-    if (!_isAlive) {
+    if ((_isAlive && neighborsLiving == 2) || neighborsLiving == 3) {
       _isAlive = true;
     } else {
-      if (neighborsLiving == 2 || neighborsLiving == 3) {
-        _isAlive = true;
-      } else {
-        _isAlive = false;
-      }
+      _isAlive = false;
     }
   }
 }
