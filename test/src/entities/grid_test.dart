@@ -44,4 +44,20 @@ void main() {
       [false, false],
     ]);
   });
+
+  test('do a 4x4 simulation step', () {
+    var grid = Grid.cells([
+      [false, true, false, false],
+      [false, true, false, false],
+      [false, true, false, false],
+      [false, false, false, false],
+    ]);
+    grid.nextStepCalculate();
+    expect(grid.asBools, [
+      [false, false, false, false],
+      [true, true, true, false],
+      [false, false, false, false],
+      [false, false, false, false],
+    ]);
+  });
 }
