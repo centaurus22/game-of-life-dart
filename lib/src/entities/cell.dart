@@ -1,18 +1,19 @@
 import 'dart:math';
 
 /// One cell in Conway's game of life
-/// 
-/// Setting whether the cell is alive is only for testing purposes
 final class Cell {
   /// Whether the cell is alive
   late bool _isAlive;
 
+  /// Set a random value on initializing
   Cell() {
     _isAlive = Random().nextBool();
   }
 
+  /// Set a value for testing purposes
   Cell.isAlive(bool isAlive);
 
+  /// Whether the cell is alive
   bool get isAlive => _isAlive;
 
   /// Calculate the live status by setting the current number of live neighbors
