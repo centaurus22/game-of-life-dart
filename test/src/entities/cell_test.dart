@@ -29,4 +29,10 @@ void main() {
     cell.nextStepCalculate(3);
     expect(cell.isAlive, true);
   });
+
+  test('die_when_more than three_live_neighbors', () {
+    cell.isAlive = true;
+    cell.nextStepCalculate(4);
+    expect(cell.isAlive, false);
+  });
 }
