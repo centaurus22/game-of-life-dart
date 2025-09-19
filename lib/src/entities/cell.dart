@@ -9,7 +9,7 @@ final class Cell {
 
   /// Calculate the live status by setting the current number of live neighbors
   ///
-  /// A cell can have 0 to 8 live neighbors
+  /// A cell can have 0 to 8 live neighbors.
   void nextStepCalculate({required int neighborsLiving}) {
     if (neighborsLiving == 2 || neighborsLiving == 3) {
       isAlive = true;
