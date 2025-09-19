@@ -2,8 +2,19 @@ import 'package:game_of_life_dart/src/entities/cell.dart';
 import 'package:test/test.dart';
 
 void main() {
+  late Cell cell;
+
+  setUp((){
+    cell = Cell();
+  });
+
   test('init_cell', () {
-    final cell = Cell();
     expect(cell.isAlive.runtimeType, bool);
+  });
+
+  test('die_when_less_than_two_live_neighbors', () {
+    cell.isAlive = true;
+    cell.nextStepCalculate(1);
+    expect(cell.isAlive, false);
   });
 }
