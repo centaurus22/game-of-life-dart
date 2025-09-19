@@ -5,12 +5,27 @@ final class Position {
 
   Position({required this.row, required this.column});
 
-  Position uL() => Position(row: row - 1, column: column - 1);
-  Position uC() => Position(row: row - 1, column: column);
-  Position uR() => Position(row: row - 1, column: column + 1);
+  /// This position shifted one row above and one column to the left (upper left)
+  Position uL() => Position(row: row + 1, column: column - 1);
+
+  /// This position shifted one row above (upper center)
+  Position uC() => Position(row: row + 1, column: column);
+
+  /// This position shifted one row above and one column to the right (upper right)
+  Position uR() => Position(row: row + 1, column: column + 1);
+
+  /// This position shifted one column to the left (middle left)
   Position mL() => Position(row: row, column: column - 1);
+
+  /// This position shifted one column to the right (middle right)
   Position mR() => Position(row: row, column: column + 1);
-  Position lL() => Position(row: row + 1, column: column - 1);
-  Position lC() => Position(row: row + 1, column: column);
-  Position lR() => Position(row: row + 1, column: column + 1);
+
+  /// This position shifted one row down and one column to the left (lower left)
+  Position lL() => Position(row: row - 1, column: column - 1);
+
+  /// This position shifted one row down and one column to the left (lower center)
+  Position lC() => Position(row: row - 1, column: column);
+
+  /// This position shifted one row down and one column to the left (lower right)
+  Position lR() => Position(row: row - 1, column: column + 1);
 }
