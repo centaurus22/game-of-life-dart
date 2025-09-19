@@ -8,7 +8,7 @@ void main() {
     grid = Grid();
   });
 
-  test('init_grit', () {
+  test('init_grid', () {
     expect(grid.asBools.runtimeType, List<List<bool>>);
   });
 }
