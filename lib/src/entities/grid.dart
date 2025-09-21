@@ -1,14 +1,19 @@
-import 'package:game_of_life_dart/src/entities/cell.dart';
-import 'package:game_of_life_dart/src/entities/coordinates.dart';
+import 'cell.dart';
+import 'coordinates.dart';
 
 /// The cell grid in Conway's Game of Life
 final class Grid {
   /// The cells on this grid
-  List<List<Cell>> _cells = [[]];
+  late List<List<Cell>> _cells;
 
+  //Height and width of the grid
   late Dimensions _dimensions;
 
-  /// The [height] and [width] can not be negative
+  /// [height] and [width] must be both larger than zero.
+  ///
+  /// @param height The height of the grid.
+  /// @param width The width of the grid.
+  /// @throws an ArgumentError if one of the parameters is not larger than zero.
   Grid({required int height, required int width}) {
     _cells = List.filled(
       height,
@@ -20,6 +25,10 @@ final class Grid {
   }
 
   /// Set the status of every cell. For testing purposes only.
+  ///
+  /// The height and with of the grid must be both larger than zero.
+  /// @param cells A two-dimensional List of cells
+  /// @throws an ArgumentError if the dimensions are not larger than zero.
   Grid.cells(List<List<bool>> cells) {
     _cells = cells
         .map((row) => row.map((b) => Cell.isAlive(b)).toList(growable: false))
@@ -30,7 +39,7 @@ final class Grid {
     _dimensions.x = cells[0].length;
   }
 
-  /// Get the status of every cell
+  /// The status of every cell.
   List<List<bool>> get asBools {
     return _cells
         .map((row) => row.map((c) => c.isAlive).toList(growable: false))
@@ -45,7 +54,7 @@ final class Grid {
 
     for (var row = 0; row < _dimensions.y; row++) {
       for (var column = 0; column < _dimensions.x; column++) {
-        var position = Position.Set(y: row, x: column);
+        var position = Position.set(y: row, x: column);
         _nextStepCalculateOn(position: position, cellsTemp: cellsTemp);
       }
     }
@@ -55,22 +64,22 @@ final class Grid {
     required Position position,
     required List<List<Cell>> cellsTemp,
   }) {
-    var neighborsLiving =
-        _isAliveAsIntOn(position: position.uL(), cellsTemp: cellsTemp) +
-        _isAliveAsIntOn(position: position.uC(), cellsTemp: cellsTemp) +
-        _isAliveAsIntOn(position: position.uR(), cellsTemp: cellsTemp) +
-        _isAliveAsIntOn(position: position.mL(), cellsTemp: cellsTemp) +
-        _isAliveAsIntOn(position: position.mR(), cellsTemp: cellsTemp) +
-        _isAliveAsIntOn(position: position.lL(), cellsTemp: cellsTemp) +
-        _isAliveAsIntOn(position: position.lC(), cellsTemp: cellsTemp) +
-        _isAliveAsIntOn(position: position.lR(), cellsTemp: cellsTemp);
+    final neighborsLiving =
+        _isAliveToIntOn(position: position.uL(), cellsTemp: cellsTemp) +
+        _isAliveToIntOn(position: position.uC(), cellsTemp: cellsTemp) +
+        _isAliveToIntOn(position: position.uR(), cellsTemp: cellsTemp) +
+        _isAliveToIntOn(position: position.mL(), cellsTemp: cellsTemp) +
+        _isAliveToIntOn(position: position.mR(), cellsTemp: cellsTemp) +
+        _isAliveToIntOn(position: position.lL(), cellsTemp: cellsTemp) +
+        _isAliveToIntOn(position: position.lC(), cellsTemp: cellsTemp) +
+        _isAliveToIntOn(position: position.lR(), cellsTemp: cellsTemp);
 
     _cells[position.y][position.x].nextStepCalculate(
       neighborsLiving: neighborsLiving,
     );
   }
 
-  int _isAliveAsIntOn({
+  int _isAliveToIntOn({
     required Position position,
     required List<List<Cell>> cellsTemp,
   }) {

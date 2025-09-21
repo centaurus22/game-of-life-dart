@@ -5,7 +5,7 @@ void main() {
   group('test position object', () {
     late Position position;
 
-    setUp(() => {position = Position.Set(y: 1, x: 1)});
+    setUp(() => {position = Position.set(y: 1, x: 1)});
 
     test('init_position', () {
       expect(position.y, 1);

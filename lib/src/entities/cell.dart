@@ -11,9 +11,11 @@ final class Cell {
   }
 
   /// Set a value for testing purposes
+  ///
+  /// @parameter Whether this cell is alive
   Cell.isAlive(this._isAlive);
 
-  /// Whether the cell is alive
+  /// Whether this cell is alive
   bool get isAlive => _isAlive;
 
   /// Calculate the live status by setting the current number of live neighbors
@@ -28,6 +30,8 @@ final class Cell {
   }
 
   /// Clones the cell
+  ///
+  /// @return A new [Cell] with the same status.
   Cell clone() {
     return Cell.isAlive(_isAlive);
   }

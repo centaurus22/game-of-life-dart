@@ -1,18 +1,32 @@
+/// A coordinate pair with an x and y value.
 abstract class Coordinates {
+  /// The x value.
   late int _x;
+
+  /// The y value.
   late int _y;
 
   int get x => _x;
   int get y => _y;
 }
 
+/// A value pair that represents two dimensions.
 final class Dimensions extends Coordinates {
   Dimensions();
+
+  ///Initialize this by setting the dimensions directly.
+  ///
+  /// @param x The width.
+  /// @param y The height.
+  /// @throws ArgumentError if one of the dimensions are not larger than zero.
   Dimensions.set({required int x, required int y}) {
-    this.x = x;
-    this.y = y;
+      _x = x;
+      _y = y;
   }
 
+  /// The width of this.
+  ///
+  /// Throws an [ArgumentError] if it ist not larger than zero.
   set x(int x) {
     if (x <= 0) {
       throw ArgumentError(_message(value: 'width'));
@@ -20,6 +34,9 @@ final class Dimensions extends Coordinates {
     _x = x;
   }
 
+  /// The height of this.
+  ///
+  /// @throws an [ArgumentError] if it ist not larger than zero.
   set y(int y) {
     if (y <= 0) {
       throw ArgumentError(_message(value: 'height'));
@@ -32,8 +49,13 @@ final class Dimensions extends Coordinates {
   }
 }
 
+/// A value pair that represents a coordinate pair.
 final class Position extends Coordinates {
-  Position.Set({required int x, required int y}) {
+  ///Initialize this
+  ///
+  ///@parameter x The column
+  ///@parameter y The row
+  Position.set({required int x, required int y}) {
     _x = x;
     _y = y;
   }
@@ -41,27 +63,43 @@ final class Position extends Coordinates {
   set x(int x) => _x = x;
   set y(int y) => _y = y;
 
-  /// This position shifted one row above and one column to the left (upper left)
-  Position uL() => Position.Set(x: _x - 1, y: _y + 1);
+  /// A new [Position] one row above and one column to the left (upper left)
+  ///
+  /// @return The new position
+  Position uL() => Position.set(x: _x - 1, y: _y + 1);
 
-  /// This position shifted one row above (upper center)
-  Position uC() => Position.Set(x: _x, y: _y + 1);
+  /// A new [Position]  one row above (upper center)
+  ///
+  /// @return The new position
+  Position uC() => Position.set(x: _x, y: _y + 1);
 
-  /// This position shifted one row above and one column to the right (upper right)
-  Position uR() => Position.Set(x: _x + 1, y: _y + 1);
+  /// A new [Position] one row above and one column to the right (upper right)
+  ///
+  /// @return The new position
+  Position uR() => Position.set(x: _x + 1, y: _y + 1);
 
-  /// This position shifted one column to the left (middle left)
-  Position mL() => Position.Set(x: _x - 1, y: _y);
+  /// A new [Position] one column to the left (middle left)
+  ///
+  /// @return The new position
+  Position mL() => Position.set(x: _x - 1, y: _y);
 
-  /// This position shifted one column to the right (middle right)
-  Position mR() => Position.Set(x: _x + 1, y: _y);
+  /// A new [Position] one column to the right (middle right)
+  ///
+  /// @return The new position
+  Position mR() => Position.set(x: _x + 1, y: _y);
 
-  /// This position shifted one row down and one column to the left (lower left)
-  Position lL() => Position.Set(x: _x - 1, y: _y - 1);
+  /// A new [Position] one row down and one column to the left (lower left)
+  ///
+  /// @return The new position
+  Position lL() => Position.set(x: _x - 1, y: _y - 1);
 
-  /// This position shifted one row down and one column to the left (lower center)
-  Position lC() => Position.Set(x: _x, y: _y - 1);
+  /// A new [Position] one row down and one column to the left (lower center)
+  ///
+  /// @return The new position
+  Position lC() => Position.set(x: _x, y: _y - 1);
 
-  /// This position shifted one row down and one column to the left (lower right)
-  Position lR() => Position.Set(x: _x + 1, y: _y - 1);
+  /// A new [Position] one row down and one column to the left (lower right)
+  ///
+  /// @return The new position
+  Position lR() => Position.set(x: _x + 1, y: _y - 1);
 }
