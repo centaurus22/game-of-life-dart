@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('init_grid', () {
-    var grid = Grid(height: 0, width: 0);
+    var grid = Grid(height: 1, width: 3);
     expect(grid.asBools.runtimeType, List<List<bool>>);
   });
 
