@@ -4,19 +4,19 @@ import 'package:test/test.dart';
 void main() {
   test('init_grid', () {
     var grid = Grid(height: 1, width: 3);
-    expect(grid.asBools.runtimeType, List<List<bool>>);
+    expect(grid.toBools.runtimeType, List<List<bool>>);
   });
 
   test('init_as_1x1_grid', () {
     var grid = Grid(height: 1, width: 1);
-    expect(grid.asBools.length, 1);
-    expect(grid.asBools[0].length, 1);
+    expect(grid.toBools.length, 1);
+    expect(grid.toBools[0].length, 1);
   });
 
   test('init_as_2x3_grid', () {
     var grid = Grid(height: 2, width: 3);
-    expect(grid.asBools.length, 2);
-    expect(grid.asBools[0].length, 3);
+    expect(grid.toBools.length, 2);
+    expect(grid.toBools[0].length, 3);
   });
 
   test('do a simulation step', () {
@@ -26,7 +26,7 @@ void main() {
       [false, false, false],
     ]);
     grid.nextStepCalculate();
-    expect(grid.asBools, [
+    expect(grid.toBools, [
       [false, false, false],
       [false, false, false],
       [false, false, false],
@@ -39,7 +39,7 @@ void main() {
       [true, true],
     ]);
     grid.nextStepCalculate();
-    expect(grid.asBools, [
+    expect(grid.toBools, [
       [false, false],
       [false, false],
     ]);
@@ -53,7 +53,7 @@ void main() {
       [false, false, false, false],
     ]);
     grid.nextStepCalculate();
-    expect(grid.asBools, [
+    expect(grid.toBools, [
       [false, false, false, false],
       [true, true, true, false],
       [false, false, false, false],

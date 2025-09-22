@@ -30,9 +30,7 @@ final class Grid {
   /// @param cells A two-dimensional List of cells
   /// @throws an ArgumentError if the dimensions are not larger than zero.
   Grid.cells(List<List<bool>> cells) {
-    _cells = cells
-        .map((row) => row.map((b) => Cell.isAlive(b)).toList(growable: false))
-        .toList(growable: false);
+    _cells = _mapList(cells, (b) => Cell.isAlive(b));
 
     _dimensions = Dimensions();
     _dimensions.y = cells.length;
@@ -40,17 +38,13 @@ final class Grid {
   }
 
   /// The status of every cell.
-  List<List<bool>> get asBools {
-    return _cells
-        .map((row) => row.map((c) => c.isAlive).toList(growable: false))
-        .toList(growable: false);
+  List<List<bool>> get toBools {
+    return _mapList(_cells, (c) => c.isAlive);
   }
 
   /// Calculate the live status of all the cells of the grid.
   void nextStepCalculate() {
-    var cellsTemp = _cells
-        .map((row) => row.map((c) => c.clone()).toList(growable: false))
-        .toList(growable: false);
+    List<List<Cell>> cellsTemp = _mapList(_cells, (c) => c.clone());
 
     for (var row = 0; row < _dimensions.y; row++) {
       for (var column = 0; column < _dimensions.x; column++) {
@@ -96,5 +90,11 @@ final class Grid {
     }
 
     return cellsTemp[position.y][position.x].isAlive ? 1 : 0;
+  }
+
+  List<List<R>> _mapList<E, R>(List<List<E>> list, R Function(E v) function) {
+    return list
+        .map((row) => row.map((v) => function(v)).toList(growable: false))
+        .toList(growable: false);
   }
 }
