@@ -20,13 +20,14 @@ final class Dimensions extends Coordinates {
   /// @param y The height.
   /// @throws ArgumentError if one of the dimensions are not larger than zero.
   Dimensions.set({required int x, required int y}) {
-      _x = x;
-      _y = y;
+    _x = x;
+    _y = y;
   }
 
   /// The width of this.
   ///
-  /// Throws an [ArgumentError] if it ist not larger than zero.
+  /// Must be called than this was initialized by the default constructor.
+  /// @throws [ArgumentError] if it ist not larger than zero.
   set x(int x) {
     if (x <= 0) {
       throw ArgumentError(_message(value: 'width'));
@@ -36,7 +37,8 @@ final class Dimensions extends Coordinates {
 
   /// The height of this.
   ///
-  /// @throws an [ArgumentError] if it ist not larger than zero.
+  /// Must be called than this was initialized by the default constructor.
+  /// @throws [ArgumentError] if it ist not larger than zero.
   set y(int y) {
     if (y <= 0) {
       throw ArgumentError(_message(value: 'height'));
