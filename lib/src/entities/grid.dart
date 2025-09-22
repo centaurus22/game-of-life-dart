@@ -38,10 +38,8 @@ final class Grid {
   }
 
   /// The status of every cell.
-  List<List<bool>> get toBools {
-    return _mapList(_cells, (c) => c.isAlive);
-  }
-
+  List<List<bool>> get toBools => _mapList(_cells, (c) => c.isAlive);
+  
   /// Calculate the live status of all the cells of the grid.
   void nextStepCalculate() {
     List<List<Cell>> cellsTemp = _mapList(_cells, (c) => c.clone());
