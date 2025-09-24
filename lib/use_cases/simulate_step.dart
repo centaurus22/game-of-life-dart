@@ -7,6 +7,7 @@ final class SimulateStep {
   /// @param The current [Grid].
   /// @return The next step of the [Grid].
   Grid execute(Grid grid) {
+    grid.nextStepCalculate();
     return grid;
   }
 }
