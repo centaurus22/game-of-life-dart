@@ -9,11 +9,9 @@ final class Grid {
   //Height and width of the grid
   late Dimensions _dimensions;
 
-  /// [height] and [width] must be both larger than zero.
+  /// Creates the internal two dimensional list of [Cell].
   ///
-  /// @param height The height of the grid.
-  /// @param width The width of the grid.
-  /// @throws an ArgumentError if one of the parameters is not larger than zero.
+  /// @param _dimensions The dimensions of the grid.
   Grid(this._dimensions) {
     _cells = List.filled(
       _dimensions.y,
