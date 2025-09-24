@@ -12,7 +12,7 @@ final class Cell {
 
   /// Set a value for testing purposes
   ///
-  /// @parameter Whether this cell is alive
+  /// @param _isAlive Whether this cell is alive
   Cell.isAlive(this._isAlive);
 
   /// Whether this cell is alive
