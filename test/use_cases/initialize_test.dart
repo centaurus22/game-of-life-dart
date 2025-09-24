@@ -8,13 +8,13 @@ void main() {
   setUp(() {
     initialize = Initialize();
   });
-  test('Throw error if no width', () {
+  test('throw error if no width', () {
     expect(() => initialize.execute({'y': 2}), throwsArgumentError);
   });
-  test('Throw error if no height', () {
+  test('throw error if no height', () {
     expect(() => initialize.execute({'x': 2}), throwsArgumentError);
   });
-  test('Return Grid', () {
+  test('return grid', () {
     var grid = initialize.execute({'x': 2, 'y': 4});
     expect(grid.runtimeType, Grid );
 

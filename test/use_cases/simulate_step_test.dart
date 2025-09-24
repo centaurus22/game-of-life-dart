@@ -10,7 +10,7 @@ void main() {
     simulateStep = SimulateStep();
   });
 
-  test('return Grid', () {
+  test('return grid', () {
     var grid = simulateStep.execute(Grid(Dimensions.set(x: 3, y: 4)));
     expect(grid.runtimeType, Grid );
   });
