@@ -14,14 +14,12 @@ final class Grid {
   /// @param height The height of the grid.
   /// @param width The width of the grid.
   /// @throws an ArgumentError if one of the parameters is not larger than zero.
-  Grid({required int height, required int width}) {
+  Grid(this._dimensions) {
     _cells = List.filled(
-      height,
-      List.filled(width, Cell(), growable: false),
+      _dimensions.y,
+      List.filled(_dimensions.x, Cell(), growable: false),
       growable: false,
     );
-
-    _dimensions = Dimensions.set(x: width, y: height);
   }
 
   /// Set the status of every cell. For testing purposes only.
