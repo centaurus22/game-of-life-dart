@@ -1,15 +1,26 @@
 name: game_of_life_dart
-description: A sample command-line application.
 version: 0.0.0
-# repository: https://github.com/my_org/my_repo
+description: Extended Conway's Game of Live as a terminal based application. Makes heavy use of Unicode symbols for boxes and grid. Multiple zoom levels.
+repository: https://github.com/centaurus22/game-of-life-dart
 
 environment:
   sdk: ^3.9.3
 
-# Add regular dependencies here.
 dependencies:
 
 dev_dependencies:
   coverage: ^1.15.0
   lints: ^6.0.0
   test: ^1.25.6
+
+platforms:
+  linux:
+
+funding: https://www.paypal.com/paypalme/klausthorres
+
+topics:
+  - simulation
+  - tui
+  - text
+  - unicode
+  - clean-architecture
