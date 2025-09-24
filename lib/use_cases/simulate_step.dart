@@ -1,7 +1,8 @@
 import 'package:game_of_life_dart/src/entities/grid.dart';
+import 'simulate_step_interface.dart';
 
 //Simulate a step
-final class SimulateStep {
+final class SimulateStep implements SimulateStepInterface {
   /// Simulate a step.
   /// 
   /// @param The current [Grid].
