@@ -1,6 +1,6 @@
 # game-of-life-dart
 
-My goal is to create an extended version of Conway's Game of Live in the Dart programming language as a terminal based application.
+My goal is to create an extended version of Conway's Game of Live in the Dart programming language as a terminal based application. In my simulation, the grid is wrapping around.
 
 Currently the entities are already created.
 
