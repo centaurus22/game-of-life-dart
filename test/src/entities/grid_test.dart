@@ -26,7 +26,7 @@ void main() {
       [false, true, false],
       [false, false, false],
     ]);
-    grid.nextStepCalculate();
+    grid.simulateStep();
     expect(grid.toBools, [
       [false, false, false],
       [false, false, false],
@@ -39,7 +39,7 @@ void main() {
       [true, true],
       [true, true],
     ]);
-    grid.nextStepCalculate();
+    grid.simulateStep();
     expect(grid.toBools, [
       [false, false],
       [false, false],
@@ -53,7 +53,7 @@ void main() {
       [false, true, false, false],
       [false, false, false, false],
     ]);
-    grid.nextStepCalculate();
+    grid.simulateStep();
     expect(grid.toBools, [
       [false, false, false, false],
       [true, true, true, false],

@@ -37,18 +37,18 @@ final class Grid {
   List<List<bool>> get toBools => _mapList(_cells, (c) => c.isAlive);
 
   /// Calculate the live status of all the cells of the grid.
-  void nextStepCalculate() {
+  void simulateStep() {
     List<List<Cell>> cellsTemp = _mapList(_cells, (c) => c.clone());
 
     for (var row = 0; row < _dimensions.y; row++) {
       for (var column = 0; column < _dimensions.x; column++) {
         var position = Position.set(y: row, x: column);
-        _nextStepCalculateOn(position: position, cellsTemp: cellsTemp);
+        _simulateStepOn(position: position, cellsTemp: cellsTemp);
       }
     }
   }
 
-  void _nextStepCalculateOn({
+  void _simulateStepOn({
     required Position position,
     required List<List<Cell>> cellsTemp,
   }) {
@@ -62,7 +62,7 @@ final class Grid {
         _isAliveToIntOn(position: position.lC(), cellsTemp: cellsTemp) +
         _isAliveToIntOn(position: position.lR(), cellsTemp: cellsTemp);
 
-    _cells[position.y][position.x].nextStepCalculate(
+    _cells[position.y][position.x].simulateStep(
       neighborsLiving: neighborsLiving,
     );
   }
