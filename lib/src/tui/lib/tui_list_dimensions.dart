@@ -1,13 +1,11 @@
 import 'package:dart_console/dart_console.dart';
 
 class ListDimensions {
-  /// External console object
-  final Console _console = Console();
-
   /// Get the dimensions of the terminal
   ///
   /// @return Map with the dimensions of the terminal
   Map<String, int> execute() {
-    return {'x': _console.windowWidth, 'y': _console.windowHeight};
+    final console = Console();
+    return {'x': console.windowWidth, 'y': console.windowHeight};
   }
 }
