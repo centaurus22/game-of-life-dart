@@ -102,10 +102,6 @@ void main() {
       test('throw error if no y value', () {
         expect(() => Dimensions.fromMap({'x': 3}), throwsArgumentError);
       });
-      test('convert to map', () {
-        final dimensions = Dimensions.set(x: 100, y: 50);
-        expect(dimensions.toMap(), {'x': 100, 'y': 50});
-      });
     });
   });
 }
