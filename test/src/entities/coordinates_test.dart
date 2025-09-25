@@ -92,6 +92,16 @@ void main() {
         expect(dimension.x, 2);
         expect(dimension.y, 3);
       });
+      test('convert from map', () {
+        final dimensions = Dimensions.fromMap({'x': 4, 'y': 3});
+        expect(dimensions.x, 4);
+      });
+      test('throw error if no x value', () {
+        expect(() => Dimensions.fromMap({'y': 3}), throwsArgumentError);
+      });
+      test('throw error if no y value', () {
+        expect(() => Dimensions.fromMap({'x': 3}), throwsArgumentError);
+      });
     });
   });
 }

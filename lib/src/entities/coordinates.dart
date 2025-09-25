@@ -24,6 +24,18 @@ final class Dimensions extends Coordinates {
     _y = y;
   }
 
+   static Dimensions fromMap(Map<String, int> dimensions) {
+    if (!dimensions.containsKey('x')) {
+      throw ArgumentError('The map must contain an x value (key "x")');
+    }
+
+    if (!dimensions.containsKey('y')) {
+      throw ArgumentError('The map must contain an y value (key "y")');
+    }
+    
+    return Dimensions.set(x: dimensions['x']!, y: dimensions['y']!);
+  }
+
   /// The width of this.
   ///
   /// Must be called than this was initialized by the default constructor.
