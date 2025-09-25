@@ -62,6 +62,10 @@ final class Dimensions extends Coordinates {
     _y = y;
   }
 
+  Map<String, int> toMap() {
+    return {'x': _x, 'y': _y};
+  }
+
   static void _missingValue(String value) {
     throw ArgumentError('The map must contain an $value value (key "$value")');
   }
