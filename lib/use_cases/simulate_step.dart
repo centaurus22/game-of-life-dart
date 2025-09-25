@@ -5,7 +5,7 @@ import 'simulate_step_interface.dart';
 final class SimulateStep implements SimulateStepInterface {
   @override
   /// Simulate a step.
-  /// 
+  ///
   /// @param The current [Grid].
   /// @return The next step of the [Grid].
   Grid execute(Grid grid) {

@@ -12,7 +12,7 @@ void main() {
 
   test('return grid', () {
     var grid = simulateStep.execute(Grid(Dimensions.set(x: 3, y: 4)));
-    expect(grid.runtimeType, Grid );
+    expect(grid.runtimeType, Grid);
   });
 
   test('simulate one step', () {
@@ -20,13 +20,13 @@ void main() {
       [false, false, false, false],
       [false, true, false, false],
       [false, true, false, false],
-      [false, true, false, false]
+      [false, true, false, false],
     ]);
     expect(simulateStep.execute(grid).toBools, [
       [false, false, false, false],
       [false, false, false, false],
       [true, true, true, false],
-      [false, false, false, false]
-    ] );
+      [false, false, false, false],
+    ]);
   });
 }
