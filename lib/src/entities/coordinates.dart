@@ -24,15 +24,19 @@ final class Dimensions extends Coordinates {
     _y = y;
   }
 
-   static Dimensions fromMap(Map<String, int> dimensions) {
+  /// Initialize this with a Map with x and y values
+  ///
+  /// @throws ArgumentError if required keys are not in the map.
+  /// @returns this object
+  static Dimensions fromMap(Map<String, int> dimensions) {
     if (!dimensions.containsKey('x')) {
-      throw ArgumentError('The map must contain an x value (key "x")');
+      _missingValue('x');
     }
 
     if (!dimensions.containsKey('y')) {
-      throw ArgumentError('The map must contain an y value (key "y")');
+      _missingValue('y');
     }
-    
+
     return Dimensions.set(x: dimensions['x']!, y: dimensions['y']!);
   }
 
@@ -42,7 +46,7 @@ final class Dimensions extends Coordinates {
   /// @throws [ArgumentError] if it ist not larger than zero.
   set x(int x) {
     if (x <= 0) {
-      throw ArgumentError(_message(value: 'width'));
+      _wrongValue('x');
     }
     _x = x;
   }
@@ -53,13 +57,19 @@ final class Dimensions extends Coordinates {
   /// @throws [ArgumentError] if it ist not larger than zero.
   set y(int y) {
     if (y <= 0) {
-      throw ArgumentError(_message(value: 'height'));
+      _wrongValue('y');
     }
     _y = y;
   }
 
-  String _message({required String value}) {
-    return 'The $value of the grid must be larger than zero';
+  static void _missingValue(String value) {
+    throw ArgumentError('The map must contain an $value value (key "$value")');
+  }
+
+  void _wrongValue(String value) {
+    throw ArgumentError(
+      'The $value value of the grid must be larger than zero',
+    );
   }
 }
 
