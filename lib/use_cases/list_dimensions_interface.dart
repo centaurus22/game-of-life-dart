@@ -1,3 +1,9 @@
+import '../src/entities/coordinates.dart';
+
+/// Use case to list the [Dimensions]
 abstract class ListDimensionsInterface {
-    Map<String, int> execute();
+  /// List the [Dimensions]
+  /// 
+  /// @return [Dimensions] of the terminal.
+  Dimensions execute();
 }
