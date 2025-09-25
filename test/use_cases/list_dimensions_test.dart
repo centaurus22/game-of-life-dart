@@ -8,6 +8,9 @@ class MockDisplayAdapter extends DisplayAdapterInterface {
   Dimensions listDimensions() {
     return Dimensions.set(x: 80, y: 25);
   }
+
+  @override
+  void printStatic(Dimensions _) {}
 }
 
 void main() {
