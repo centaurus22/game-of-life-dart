@@ -62,6 +62,9 @@ final class Dimensions extends Coordinates {
     _y = y;
   }
 
+  /// Returns this as a Map
+  ///
+  /// @return [Map] with the properties of this object as key value pairs.
   Map<String, int> toMap() {
     return {'x': _x, 'y': _y};
   }
