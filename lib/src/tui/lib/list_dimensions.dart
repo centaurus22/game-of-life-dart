@@ -1,6 +1,6 @@
 import 'package:dart_console/dart_console.dart';
 
-class TuiListDimensions {
+class ListDimensions {
   /// External console object
   final Console _console = Console();
 
