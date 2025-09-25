@@ -1,22 +1,23 @@
-import 'package:dart_console/dart_console.dart';
+import 'display_adapter_interface.dart';
+
 import '../src/entities/coordinates.dart';
 import 'list_dimensions_interface.dart';
 
 /// Use case to list the [Dimensions]
 class ListDimensions extends ListDimensionsInterface {
-  /// External console object to interact with the terminal
-  final Console _console;
+  /// External DisplayAdapter object to interact with the screen
+  final DisplayAdapterInterface _displayAdapter;
 
-  /// Initialize the use case object
-  /// 
-  /// @param _console The external console object
-  ListDimensions(this._console);
+  /// Initialize this use case object
+  ///
+  /// @param _displayAdapter the used DisplayAdapter object
+  ListDimensions(this._displayAdapter);
 
   @override
   Dimensions execute() {
     /// List the [Dimensions]
-    /// 
-    /// @return [Dimensions] of the terminal.
-    return Dimensions.set(x: _console.windowWidth, y: _console.windowHeight);
+    ///
+    /// @return [Dimensions] of the screen.
+    return _displayAdapter.listDimensions();
   }
 }
