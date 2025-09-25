@@ -33,4 +33,15 @@ class Color {
   ];
 
   static int get numberBackgroundColors => background.length;
+
+  static double charsPerColor(int sumChars) {
+    if (sumChars <= numberBackgroundColors) {
+      return 1;
+    }
+    return sumChars/numberBackgroundColors;
+  }
+
+  static int colorBackground({required double charsPerColor, required int position}) {
+    return background[(position/charsPerColor).floor()];
+  }
 }

@@ -1,5 +1,5 @@
 class Char {
-  static final mainBox = {
+  final mainBox = {
     'hBorder': '═',
     'vBorder': '║',
     'uLCorner': '╔',
@@ -8,7 +8,7 @@ class Char {
     'lrCorner': '╝',
   };
 
-  static final secondaryBox = {
+  final secondaryBox = {
     'hBorder': '─',
     'vBorder': '│',
     'uLCorner': '┌',
@@ -19,7 +19,7 @@ class Char {
 
   static final backGround = '⣿';
 
-  static final grid = [
+  final grid = [
     ' ',
     '🬀',
     '🬁',
@@ -85,4 +85,8 @@ class Char {
     '🬻',
     '█', //63
   ];
+
+  static String colorCode(int color) {
+    return "\u001b[38;5;${color}m";
+  }
 }
