@@ -7,18 +7,10 @@ import 'initialize_interface.dart';
 final class Initialize extends InitializeInterface {
   @override
   /// Initialize the Grid
-  /// 
-  /// @param dimensions Dimensions of the new [Grid] as Map.
-  /// @throws an ArgumentError if the Map do not contains values
-  ///   for height or width.
+  ///
+  /// @param dimensions [Dimensions] of the new [Grid].
   /// @return the new [Grid].
-  Grid execute(Map<String, int> dimensions) {
-    if (!dimensions.containsKey('x')) {
-      throw ArgumentError('No width provided (Map key "x")');
-    }
-    if (!dimensions.containsKey('y')) {
-      throw ArgumentError('No width provided (Map key "y")');
-    }
-    return Grid(Dimensions.set(x: dimensions['x']!, y: dimensions['y']!));
+  Grid execute(Dimensions dimensions) {
+    return Grid(dimensions);
   }
 }
