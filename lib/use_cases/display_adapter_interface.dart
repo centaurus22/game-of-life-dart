@@ -7,5 +7,5 @@ abstract class DisplayAdapterInterface {
   /// @return the [Dimensions]
   Dimensions listDimensions();
 
-  void printStatic(Dimensions dimension);
+  void printStatic();
 }

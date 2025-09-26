@@ -15,7 +15,7 @@ class TuiDisplayAdapter extends DisplayAdapterInterface {
   }
 
   @override
-  void printStatic(Dimensions dimensions) {
+  void printStatic() {
     final printStatic = TuiPrintStatic();
     printStatic.execute();
   }
