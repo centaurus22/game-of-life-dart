@@ -10,6 +10,7 @@ class TuiPrintStatic {
     window.setUp();
     window.drawBackground();
     window.drawBoxes();
+    window.drawGrid([[true, true], [false, false], [true, true]]);
     window.tearDown();
   }
 }

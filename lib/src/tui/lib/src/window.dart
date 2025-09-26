@@ -15,14 +15,16 @@ class Window {
   final _bottomMarginGrid = 4;
   final _leftMarginGrid = 2;
 
+  final _foregroundColor = 82;
+
   Window() {
     _height = _console.windowHeight;
     _width = _console.windowWidth;
   }
 
   Map<String, int> get dimensions => {
-    'x': _width - _leftMarginGrid - _rightMarginGrid,
-    'y': _height - _topMarginGrid - _bottomMarginGrid,
+    'x': (_width - _leftMarginGrid - _rightMarginGrid) * 2,
+    'y': (_height - _topMarginGrid - _bottomMarginGrid) * 3,
   };
 
   void setUp() {
@@ -71,7 +73,7 @@ class Window {
     final widthMain = endColumnMain - startColumnMain;
 
     _console.cursorPosition = Coordinate(startRowMain - 1, startColumnMain - 1);
-    stdout.write(Char.colorCode(82));
+    stdout.write(Char.colorCode(_foregroundColor));
 
     stdout.write(
       Char.mainULCorner.unicode +
@@ -125,5 +127,35 @@ class Window {
     );
   }
 
-  void drawGrid(List<List<bool>> grid) {}
+  void drawGrid(List<List<bool>> grid) {
+    final height = grid.length;
+    final width = grid[0].length;
+    var gridString = Char.colorCode(_foregroundColor);
+
+    for (var row = 0; row < height; row += 3) {
+      for (var column = 0; column < width; column += 2) {
+        gridString += Char.grid(
+          _colorIndex(grid: grid, column: column, row: row),
+        );
+      }
+    }
+    stdout.write(gridString);
+  }
+
+  int _colorIndex({
+    required List<List<bool>> grid,
+    required int column,
+    required int row,
+  }) {
+    return _toInt(grid[row][column]) +
+        _toInt(grid[row][column + 1]) * 2 +
+        _toInt(grid[row + 1][column]) * 4 +
+        _toInt(grid[row + 1][column + 1]) * 8 +
+        _toInt(grid[row + 2][column]) * 16 +
+        _toInt(grid[row + 2][column + 1]) * 32;
+  }
+
+  int _toInt(bool value) {
+    return value ? 1 : 0;
+  }
 }
