@@ -9,10 +9,13 @@ class Window {
     final height = console.windowHeight;
     final width = console.windowWidth;
     final charsPerColor = Color.charsPerColor(height);
-    var background = ''; 
-    
+    var background = '';
+
     for (var row = 0; row < height; row++) {
-      var colorBackground = Color.colorBackground(charsPerColor: charsPerColor, position: row);
+      var colorBackground = Color.colorBackground(
+        charsPerColor: charsPerColor,
+        position: row,
+      );
       background += Char.colorCode(colorBackground) + Char.backGround * width;
     }
     print(background);

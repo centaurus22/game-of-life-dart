@@ -38,10 +38,13 @@ class Color {
     if (sumChars <= numberBackgroundColors) {
       return 1;
     }
-    return sumChars/numberBackgroundColors;
+    return sumChars / numberBackgroundColors;
   }
 
-  static int colorBackground({required double charsPerColor, required int position}) {
-    return background[(position/charsPerColor).floor()];
+  static int colorBackground({
+    required double charsPerColor,
+    required int position,
+  }) {
+    return background[(position / charsPerColor).floor()];
   }
 }
