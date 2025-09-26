@@ -7,6 +7,9 @@ class TuiPrintStatic {
   /// Print the background
   void execute() {
     final window = Window();
-    window.printBackground();
+    window.setUp();
+    window.drawBackground();
+    window.drawBoxes();
+    window.tearDown();
   }
 }
