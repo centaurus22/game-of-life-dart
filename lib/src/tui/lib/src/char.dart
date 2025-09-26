@@ -88,7 +88,7 @@ enum Char {
       '🬻',
       '█', //63
     ];
-  return grid[number];
+    return grid[number];
   }
 
   final String unicode;
