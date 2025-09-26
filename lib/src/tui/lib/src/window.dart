@@ -10,10 +10,20 @@ class Window {
   late int _height;
   late int _width;
 
+  final _topMarginGrid = 1;
+  final _rightMarginGrid = 2;
+  final _bottomMarginGrid = 4;
+  final _leftMarginGrid = 2;
+
   Window() {
     _height = _console.windowHeight;
     _width = _console.windowWidth;
   }
+
+  Map<String, int> get dimensions => {
+    'x': _width - _leftMarginGrid - _rightMarginGrid,
+    'y': _height - _topMarginGrid - _bottomMarginGrid,
+  };
 
   void setUp() {
     _console.clearScreen();
@@ -53,11 +63,11 @@ class Window {
   ///  ╰────╯
   /// In all calculations the border does not count to the width and height of the box.
   void drawBoxes() {
-    final startRowMain = 2;
-    final endRowMain = _height - 6;
+    final startRowMain = _topMarginGrid + 1;
+    final endRowMain = _height - _bottomMarginGrid - 1;
 
-    final startColumnMain = 3;
-    final endColumnMain = _width - 3;
+    final startColumnMain = _leftMarginGrid + 1;
+    final endColumnMain = _width - _rightMarginGrid - 1;
     final widthMain = endColumnMain - startColumnMain;
 
     _console.cursorPosition = Coordinate(startRowMain - 1, startColumnMain - 1);
@@ -114,4 +124,6 @@ class Window {
           Char.secondaryLRRoundCorner.unicode,
     );
   }
+
+  void drawGrid(List<List<bool>> grid) {}
 }
