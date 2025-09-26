@@ -1,98 +1,99 @@
-class Char {
-  final mainBox = {
-    'hBorder': '═',
-    'vBorder': '║',
-    'uLCorner': '╔',
-    'uRCorner': '╗',
-    'lLCorner': '╚',
-    'lrCorner': '╝',
-  };
+enum Char {
+  backGround('⣿'),
 
-  final secondaryBox = {
-    'hBorder': '─',
-    'vBorder': '│',
-    'uLCorner': '┌',
-    'uRCorner': '┐',
-    'lLCorner': '└',
-    'lRCorner': '┘',
-    'lLRoundCorner': '╰',
-    'lRRoundCorner': '╯'
-  };
+  mainHBorder('═'),
+  mainVBorder('║'),
+  mainULCorner('╔'),
+  mainURCorner('╗'),
+  mainLLCorner('╚'),
+  mainLRCorner('╝'),
 
-  final boxConnector = {
-    'downSingleHorizontalDouble': '╤',
-    'downDoubleHorizontalDouble': '╦',
-    'upDoubleHorizontalSingle': '╨'
-  };
+  secondaryHBorder('─'),
+  secondaryVBorder('│'),
+  secondaryULCorner('┌'),
+  secondaryURCorner('┐'),
+  secondaryLLCorner('└'),
+  secondaryLRCorner('┘'),
+  secondaryLLRoundCorner('╰'),
+  secondaryLRRoundCorner('╯'),
 
-  static final backGround = '⣿';
+  downSingleHorizontalDouble('╤'),
+  downDoubleHorizontalDouble('╦'),
+  upDoubleHorizontalSingle('╨');
 
-  final grid = [
-    ' ',
-    '🬀',
-    '🬁',
-    '🬂',
-    '🬃',
-    '🬄',
-    '🬅',
-    '🬆',
-    '🬇',
-    '🬈',
-    '🬉',
-    '🬊',
-    '🬋',
-    '🬌',
-    '🬍',
-    '🬎',
-    '🬏', //15
-    '🬐',
-    '🬑',
-    '🬒',
-    '🬓',
-    '▌',
-    '🬔',
-    '🬕',
-    '🬖',
-    '🬗',
-    '🬘',
-    '🬙',
-    '🬚',
-    '🬛',
-    '🬜',
-    '🬝', //31
-    '🬞',
-    '🬟',
-    '🬠',
-    '🬡',
-    '🬢',
-    '🬣',
-    '🬤',
-    '🬥',
-    '🬦',
-    '🬧',
-    '▐',
-    '🬨',
-    '🬩',
-    '🬪',
-    '🬫',
-    '🬬', //47
-    '🬭',
-    '🬮',
-    '🬯',
-    '🬰',
-    '🬱',
-    '🬲',
-    '🬳',
-    '🬴',
-    '🬵',
-    '🬶',
-    '🬷',
-    '🬸',
-    '🬹',
-    '🬺',
-    '🬻',
-    '█', //63
-  ];
+  static String grid(int number) {
+    final grid = [
+      ' ',
+      '🬀',
+      '🬁',
+      '🬂',
+      '🬃',
+      '🬄',
+      '🬅',
+      '🬆',
+      '🬇',
+      '🬈',
+      '🬉',
+      '🬊',
+      '🬋',
+      '🬌',
+      '🬍',
+      '🬎',
+      '🬏', //15
+      '🬐',
+      '🬑',
+      '🬒',
+      '🬓',
+      '▌',
+      '🬔',
+      '🬕',
+      '🬖',
+      '🬗',
+      '🬘',
+      '🬙',
+      '🬚',
+      '🬛',
+      '🬜',
+      '🬝', //31
+      '🬞',
+      '🬟',
+      '🬠',
+      '🬡',
+      '🬢',
+      '🬣',
+      '🬤',
+      '🬥',
+      '🬦',
+      '🬧',
+      '▐',
+      '🬨',
+      '🬩',
+      '🬪',
+      '🬫',
+      '🬬', //47
+      '🬭',
+      '🬮',
+      '🬯',
+      '🬰',
+      '🬱',
+      '🬲',
+      '🬳',
+      '🬴',
+      '🬵',
+      '🬶',
+      '🬷',
+      '🬸',
+      '🬹',
+      '🬺',
+      '🬻',
+      '█', //63
+    ];
+  return grid[number];
+  }
+
+  final String unicode;
+
+  const Char(this.unicode);
 
   static String colorCode(int color) {
     return "\u001b[38;5;${color}m";
