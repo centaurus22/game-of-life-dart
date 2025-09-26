@@ -14,7 +14,15 @@ class Char {
     'uLCorner': '┌',
     'uRCorner': '┐',
     'lLCorner': '└',
-    'lrCorner': '┘',
+    'lRCorner': '┘',
+    'lLRoundCorner': '╰',
+    'lRRoundCorner': '╯'
+  };
+
+  final boxConnector = {
+    'downSingleHorizontalDouble': '╤',
+    'downDoubleHorizontalDouble': '╦',
+    'upDoubleHorizontalSingle': '╨'
   };
 
   static final backGround = '⣿';
