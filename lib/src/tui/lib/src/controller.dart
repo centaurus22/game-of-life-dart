@@ -1,11 +1,10 @@
 import 'dart:io';
 
 import 'package:dart_console/dart_console.dart';
-import 'package:game_of_life_dart/src/tui/lib/src/char.dart';
-
+import 'char.dart';
 import 'color.dart';
 
-class Window {
+class Controller {
   final _console = Console();
   late int _height;
   late int _width;
@@ -17,7 +16,7 @@ class Window {
 
   final _foregroundColor = 82;
 
-  Window() {
+  Controller() {
     _height = _console.windowHeight;
     _width = _console.windowWidth;
   }
