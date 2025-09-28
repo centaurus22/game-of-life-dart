@@ -1,5 +1,5 @@
 enum Char {
-  backGround('⣿'),
+  background('⣿'),
 
   mainHBorder('═'),
   mainVBorder('║'),

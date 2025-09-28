@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:dart_console/dart_console.dart';
 import 'char.dart';
 import 'color.dart';
+import 'screen.dart';
 
 class Controller {
-  final _console = Console();
+  final Screen _screen;
   late int _height;
   late int _width;
 
@@ -14,9 +14,13 @@ class Controller {
   final _bottomMarginGrid = 4;
   final _leftMarginGrid = 2;
 
-  Controller() {
-    _height = _console.windowHeight;
-    _width = _console.windowWidth;
+  Controller(this._screen) {
+    final dimensions = _screen.dimensions;
+    if (!dimensions.containsKey('width') || !dimensions.containsKey('height')) {
+      throw StateError('Screen does not return width or height');
+    }
+    _width = dimensions['width']!;
+    _height = dimensions['height']!;
   }
 
   Map<String, int> get dimensions => {
@@ -25,32 +29,26 @@ class Controller {
   };
 
   void setUp() {
-    _console.clearScreen();
-    _console.resetCursorPosition();
-    _console.hideCursor();
-    _console.rawMode = true;
+    _screen.setUp();
   }
 
   void tearDown() {
     sleep(Duration(seconds: 5));
-    _console.showCursor();
-    _console.rawMode = false;
-    _console.clearScreen();
+    _screen.tearDown();
   }
 
   void drawBackground() {
     final charsPerColor = _charsPerColor(_height);
-    var background = '';
 
     for (var row = 0; row < _height; row++) {
       var colorBackground = _colorBackground(
         charsPerColor: charsPerColor,
         position: row,
       );
-      background +=
-          _colorCode(colorBackground) + Char.backGround.symbol * _width;
+
+      _screen.switchToColor(colorBackground);
+      _screen.write(Char.background.symbol * _width);
     }
-    stdout.write(background);
   }
 
   /// Print the static boxes to the screen.
@@ -69,56 +67,60 @@ class Controller {
     final endColumnMain = _width - _rightMarginGrid - 1;
     final widthMain = endColumnMain - startColumnMain;
 
-    _console.cursorPosition = Coordinate(startRowMain - 1, startColumnMain - 1);
-    stdout.write(_colorCode(Color.box.num));
+    _screen.switchToColor(Color.box.num);
 
-    stdout.write(
-      Char.mainULCorner.symbol +
+    _screen.writeAt(
+      column: startColumnMain - 1,
+      row: startRowMain - 1,
+      text:
+          Char.mainULCorner.symbol +
           Char.mainHBorder.symbol * widthMain +
           Char.mainURCorner.symbol,
     );
 
     for (var row = startRowMain; row <= endRowMain; row++) {
-      _console.cursorPosition = Coordinate(row, startColumnMain - 1);
-      stdout.write(Char.mainVBorder.symbol);
-      _console.cursorPosition = Coordinate(row, endColumnMain);
-      stdout.write(Char.mainVBorder.symbol);
+      _screen.writeAt(
+        column: startColumnMain - 1,
+        row: row,
+        text: Char.mainVBorder.symbol,
+      );
+      _screen.writeAt(
+        column: endColumnMain,
+        row: row,
+        text: Char.mainVBorder.symbol,
+      );
     }
 
-    _console.cursorPosition = Coordinate(endRowMain + 1, startColumnMain - 1);
+    _screen.cursorPosition(column: startColumnMain - 1, row: endRowMain + 1);
 
     final startColumnSecondary =
         1; // Relative to primary box. Must be larger than 0.
     final widthSecondary = 30;
     final endColumnSecondary = startColumnSecondary + widthSecondary + 1;
 
-    stdout.write(
-      Char.mainLLCorner.symbol +
-          Char.mainHBorder.symbol * (startColumnSecondary - 1) +
-          Char.downSingleHorizontalDouble.symbol +
-          Char.mainHBorder.symbol * (widthSecondary) +
-          Char.downSingleHorizontalDouble.symbol +
-          Char.mainHBorder.symbol * (widthMain - widthSecondary - 2) +
-          Char.mainLRCorner.symbol,
-    );
+    _screen.write(Char.mainLLCorner.symbol);
+    _screen.write(Char.mainHBorder.symbol * (startColumnSecondary - 1));
+    _screen.write(Char.downSingleHorizontalDouble.symbol);
+    _screen.write(Char.mainHBorder.symbol * (widthSecondary));
+    _screen.write(Char.downSingleHorizontalDouble.symbol);
+    _screen.write(Char.mainHBorder.symbol * (widthMain - widthSecondary - 2));
+    _screen.write(Char.mainLRCorner.symbol);
 
-    _console.cursorPosition = Coordinate(
-      endRowMain + 2,
-      startColumnSecondary + startColumnMain - 1,
+    _screen.writeAt(
+      column: startColumnSecondary + startColumnMain - 1,
+      row: endRowMain + 2,
+      text: Char.secondaryVBorder.symbol,
     );
-    stdout.write(Char.secondaryVBorder.symbol);
-    _console.cursorPosition = Coordinate(
-      endRowMain + 2,
-      endColumnSecondary + startColumnMain - 1,
+    _screen.writeAt(
+      column: endColumnSecondary + startColumnMain - 1,
+      row: endRowMain + 2,
+      text: Char.secondaryVBorder.symbol,
     );
-    stdout.write(Char.secondaryVBorder.symbol);
-
-    _console.cursorPosition = Coordinate(
-      endRowMain + 3,
-      startColumnSecondary + startColumnMain - 1,
-    );
-    stdout.write(
-      Char.secondaryLLRoundCorner.symbol +
+    _screen.writeAt(
+      column: startColumnSecondary + startColumnMain - 1,
+      row: endRowMain + 3,
+      text:
+          Char.secondaryLLRoundCorner.symbol +
           Char.secondaryHBorder.symbol * widthSecondary +
           Char.secondaryLRRoundCorner.symbol,
     );
@@ -127,7 +129,10 @@ class Controller {
   void drawGrid(List<List<bool>> grid) {
     final height = grid.length;
     final width = grid[0].length;
-    var gridString = _colorCode(Color.cell.num);
+
+    _screen.switchToColor(Color.cell.num);
+
+    var gridString = '';
 
     for (var row = 0; row < height; row += 3) {
       for (var column = 0; column < width; column += 2) {
@@ -136,7 +141,7 @@ class Controller {
         );
       }
     }
-    stdout.write(gridString);
+    _screen.write(gridString);
   }
 
   int _colorIndex({
@@ -154,10 +159,6 @@ class Controller {
 
   int _toInt(bool value) {
     return value ? 1 : 0;
-  }
-
-  static String _colorCode(int color) {
-    return "\u001b[38;5;${color}m";
   }
 
   double _charsPerColor(int sumChars) {
