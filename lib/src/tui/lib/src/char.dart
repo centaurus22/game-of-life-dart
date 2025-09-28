@@ -91,9 +91,9 @@ enum Char {
     return grid[number];
   }
 
-  final String unicode;
+  final String symbol;
 
-  const Char(this.unicode);
+  const Char(this.symbol);
 
   static String colorCode(int color) {
     return "\u001b[38;5;${color}m";

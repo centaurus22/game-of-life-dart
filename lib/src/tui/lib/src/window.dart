@@ -51,7 +51,7 @@ class Window {
         position: row,
       );
       background +=
-          Char.colorCode(colorBackground) + Char.backGround.unicode * _width;
+          Char.colorCode(colorBackground) + Char.backGround.symbol * _width;
     }
     stdout.write(background);
   }
@@ -76,16 +76,16 @@ class Window {
     stdout.write(Char.colorCode(_foregroundColor));
 
     stdout.write(
-      Char.mainULCorner.unicode +
-          Char.mainHBorder.unicode * widthMain +
-          Char.mainURCorner.unicode,
+      Char.mainULCorner.symbol +
+          Char.mainHBorder.symbol * widthMain +
+          Char.mainURCorner.symbol,
     );
 
     for (var row = startRowMain; row <= endRowMain; row++) {
       _console.cursorPosition = Coordinate(row, startColumnMain - 1);
-      stdout.write(Char.mainVBorder.unicode);
+      stdout.write(Char.mainVBorder.symbol);
       _console.cursorPosition = Coordinate(row, endColumnMain);
-      stdout.write(Char.mainVBorder.unicode);
+      stdout.write(Char.mainVBorder.symbol);
     }
 
     _console.cursorPosition = Coordinate(endRowMain + 1, startColumnMain - 1);
@@ -96,34 +96,34 @@ class Window {
     final endColumnSecondary = startColumnSecondary + widthSecondary + 1;
 
     stdout.write(
-      Char.mainLLCorner.unicode +
-          Char.mainHBorder.unicode * (startColumnSecondary - 1) +
-          Char.downSingleHorizontalDouble.unicode +
-          Char.mainHBorder.unicode * (widthSecondary) +
-          Char.downSingleHorizontalDouble.unicode +
-          Char.mainHBorder.unicode * (widthMain - widthSecondary - 2) +
-          Char.mainLRCorner.unicode,
+      Char.mainLLCorner.symbol +
+          Char.mainHBorder.symbol * (startColumnSecondary - 1) +
+          Char.downSingleHorizontalDouble.symbol +
+          Char.mainHBorder.symbol * (widthSecondary) +
+          Char.downSingleHorizontalDouble.symbol +
+          Char.mainHBorder.symbol * (widthMain - widthSecondary - 2) +
+          Char.mainLRCorner.symbol,
     );
 
     _console.cursorPosition = Coordinate(
       endRowMain + 2,
       startColumnSecondary + startColumnMain - 1,
     );
-    stdout.write(Char.secondaryVBorder.unicode);
+    stdout.write(Char.secondaryVBorder.symbol);
     _console.cursorPosition = Coordinate(
       endRowMain + 2,
       endColumnSecondary + startColumnMain - 1,
     );
-    stdout.write(Char.secondaryVBorder.unicode);
+    stdout.write(Char.secondaryVBorder.symbol);
 
     _console.cursorPosition = Coordinate(
       endRowMain + 3,
       startColumnSecondary + startColumnMain - 1,
     );
     stdout.write(
-      Char.secondaryLLRoundCorner.unicode +
-          Char.secondaryHBorder.unicode * widthSecondary +
-          Char.secondaryLRRoundCorner.unicode,
+      Char.secondaryLLRoundCorner.symbol +
+          Char.secondaryHBorder.symbol * widthSecondary +
+          Char.secondaryLRRoundCorner.symbol,
     );
   }
 
