@@ -94,8 +94,4 @@ enum Char {
   final String symbol;
 
   const Char(this.symbol);
-
-  static String colorCode(int color) {
-    return "\u001b[38;5;${color}m";
-  }
 }

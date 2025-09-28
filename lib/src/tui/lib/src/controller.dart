@@ -41,16 +41,16 @@ class Controller {
   }
 
   void drawBackground() {
-    final charsPerColor = Color.charsPerColor(_height);
+    final charsPerColor = _charsPerColor(_height);
     var background = '';
 
     for (var row = 0; row < _height; row++) {
-      var colorBackground = Color.colorBackground(
+      var colorBackground = _colorBackground(
         charsPerColor: charsPerColor,
         position: row,
       );
       background +=
-          Char.colorCode(colorBackground) + Char.backGround.symbol * _width;
+          _colorCode(colorBackground) + Char.backGround.symbol * _width;
     }
     stdout.write(background);
   }
@@ -72,7 +72,7 @@ class Controller {
     final widthMain = endColumnMain - startColumnMain;
 
     _console.cursorPosition = Coordinate(startRowMain - 1, startColumnMain - 1);
-    stdout.write(Char.colorCode(_foregroundColor));
+    stdout.write(_colorCode(_foregroundColor));
 
     stdout.write(
       Char.mainULCorner.symbol +
@@ -129,7 +129,7 @@ class Controller {
   void drawGrid(List<List<bool>> grid) {
     final height = grid.length;
     final width = grid[0].length;
-    var gridString = Char.colorCode(_foregroundColor);
+    var gridString = _colorCode(_foregroundColor);
 
     for (var row = 0; row < height; row += 3) {
       for (var column = 0; column < width; column += 2) {
@@ -156,5 +156,23 @@ class Controller {
 
   int _toInt(bool value) {
     return value ? 1 : 0;
+  }
+
+  static String _colorCode(int color) {
+    return "\u001b[38;5;${color}m";
+  }
+
+   double _charsPerColor(int sumChars) {
+    if (sumChars <= Color.numberBackgroundColors) {
+      return 1;
+    }
+    return sumChars / Color.numberBackgroundColors;
+  }
+
+  int _colorBackground({
+    required double charsPerColor,
+    required int position,
+  }) {
+    return Color.background[(position / charsPerColor).floor()];
   }
 }
