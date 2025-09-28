@@ -21,6 +21,10 @@ enum Char {
   downDoubleHorizontalDouble('╦'),
   upDoubleHorizontalSingle('╨');
 
+  final String symbol;
+
+  const Char(this.symbol);
+
   static String grid(int number) {
     final grid = [
       ' ',
@@ -90,8 +94,4 @@ enum Char {
     ];
     return grid[number];
   }
-
-  final String symbol;
-
-  const Char(this.symbol);
 }
