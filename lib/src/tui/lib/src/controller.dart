@@ -14,8 +14,6 @@ class Controller {
   final _bottomMarginGrid = 4;
   final _leftMarginGrid = 2;
 
-  final _foregroundColor = 82;
-
   Controller() {
     _height = _console.windowHeight;
     _width = _console.windowWidth;
@@ -72,7 +70,7 @@ class Controller {
     final widthMain = endColumnMain - startColumnMain;
 
     _console.cursorPosition = Coordinate(startRowMain - 1, startColumnMain - 1);
-    stdout.write(_colorCode(_foregroundColor));
+    stdout.write(_colorCode(Color.box.num));
 
     stdout.write(
       Char.mainULCorner.symbol +
@@ -129,7 +127,7 @@ class Controller {
   void drawGrid(List<List<bool>> grid) {
     final height = grid.length;
     final width = grid[0].length;
-    var gridString = _colorCode(_foregroundColor);
+    var gridString = _colorCode(Color.cell.num);
 
     for (var row = 0; row < height; row += 3) {
       for (var column = 0; column < width; column += 2) {
@@ -162,17 +160,14 @@ class Controller {
     return "\u001b[38;5;${color}m";
   }
 
-   double _charsPerColor(int sumChars) {
+  double _charsPerColor(int sumChars) {
     if (sumChars <= Color.numberBackgroundColors) {
       return 1;
     }
     return sumChars / Color.numberBackgroundColors;
   }
 
-  int _colorBackground({
-    required double charsPerColor,
-    required int position,
-  }) {
-    return Color.background[(position / charsPerColor).floor()];
+  int _colorBackground({required double charsPerColor, required int position}) {
+    return Color.background()[(position / charsPerColor).floor()];
   }
 }
