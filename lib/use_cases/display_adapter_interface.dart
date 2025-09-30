@@ -11,4 +11,7 @@ abstract class DisplayAdapterInterface {
   ///
   /// like the background, the border of the grid, help elements.
   void drawStatic();
+
+  /// Prints the dynamic elements of the screen
+  void drawDynamic();
 }

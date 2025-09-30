@@ -1,3 +1,4 @@
+import 'package:game_of_life_dart/src/tui/lib/tui_draw_dynamic.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_list_dimensions.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_draw_static.dart';
 import '../entities/coordinates.dart';
@@ -21,5 +22,12 @@ class TuiDisplayAdapter extends DisplayAdapterInterface {
   void drawStatic() {
     final drawStatic = TuiDrawStatic();
     drawStatic.execute();
+  }
+
+  @override
+  /// Draw the dynamic elements of the screen
+  void drawDynamic() {
+    final drawDynamic = TuiDrawDynamic();
+    drawDynamic.execute();
   }
 }
