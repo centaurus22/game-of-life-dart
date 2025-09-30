@@ -1,17 +1,26 @@
 import 'package:game_of_life_dart/src/tui/lib/tui_draw_dynamic.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_list_dimensions.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_draw_static.dart';
+import 'package:game_of_life_dart/src/tui/lib/tui_set_up.dart';
+
 import '../entities/coordinates.dart';
 import '../../use_cases/display_adapter_interface.dart';
 
-/// Represents the Console where the simulation is displayed
+/// Represents the terminal where the simulation is displayed
 class TuiDisplayAdapter extends DisplayAdapterInterface {
+  @override
+  /// Sets up the terminal
+  void setUp() {
+    final setUp = TuiSetUp();
+    setUp.execute();
+  }
+
   @override
   /// List the dimensions of the screen
   ///
   /// @return the [Dimensions]
   Dimensions listDimensions() {
-    final listDimensions = ListDimensions();
+    final listDimensions = TuiListDimensions();
     return Dimensions.fromMap(listDimensions.execute());
   }
 

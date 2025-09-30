@@ -1,7 +1,7 @@
 import 'src/controller.dart';
 import 'src/screen.dart';
 
-class ListDimensions {
+class TuiListDimensions {
   /// Get the dimensions of the terminal
   ///
   /// @return Map with the dimensions of the main box where the simulation grid is displayed.
