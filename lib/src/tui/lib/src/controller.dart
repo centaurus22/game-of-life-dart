@@ -137,14 +137,14 @@ class Controller {
     for (var row = 0; row < height; row += 3) {
       for (var column = 0; column < width; column += 2) {
         gridString += Char.grid(
-          _colorIndex(grid: grid, column: column, row: row),
+          _charIndex(grid: grid, column: column, row: row),
         );
       }
     }
     _screen.write(gridString);
   }
 
-  int _colorIndex({
+  int _charIndex({
     required List<List<bool>> grid,
     required int column,
     required int row,
