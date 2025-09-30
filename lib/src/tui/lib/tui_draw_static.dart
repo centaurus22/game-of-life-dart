@@ -1,16 +1,17 @@
 import 'src/screen.dart';
 import 'src/controller.dart';
 
-/// Prints the static elements of the screen
+/// Draw the static elements of the screen
 ///
-/// like the background, the border of the grid, help elements.
-class TuiPrintStatic {
-  /// Print the background
+/// * The background.
+/// * The box which contains the grid.
+class TuiDrawStatic {
+  /// Draw the background and the box
   void execute() {
     final controller = Controller(Screen());
     controller.setUp();
     controller.drawBackground();
-    controller.drawBoxes();
+    controller.drawBox();
     controller.drawGrid([
       [true, true],
       [false, false],

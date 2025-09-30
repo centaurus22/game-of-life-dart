@@ -1,5 +1,5 @@
 import 'package:game_of_life_dart/src/tui/lib/tui_list_dimensions.dart';
-import 'package:game_of_life_dart/src/tui/lib/tui_print_static.dart';
+import 'package:game_of_life_dart/src/tui/lib/tui_draw_static.dart';
 import '../entities/coordinates.dart';
 import '../../use_cases/display_adapter_interface.dart';
 
@@ -18,8 +18,8 @@ class TuiDisplayAdapter extends DisplayAdapterInterface {
   ///
   /// like the background, the border of the grid, help elements.
   @override
-  void printStatic() {
-    final printStatic = TuiPrintStatic();
-    printStatic.execute();
+  void drawStatic() {
+    final drawStatic = TuiDrawStatic();
+    drawStatic.execute();
   }
 }

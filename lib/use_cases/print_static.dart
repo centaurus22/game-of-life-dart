@@ -16,6 +16,6 @@ class PrintStatic extends PrintStaticInterface {
   @override
   /// Print the static elements to the screen
   void execute() {
-    _displayAdapter.printStatic();
+    _displayAdapter.drawStatic();
   }
 }

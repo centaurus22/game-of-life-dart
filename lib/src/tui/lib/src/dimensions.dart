@@ -2,6 +2,7 @@
 class Dimensions {
   /// Height of the screen
   final int height;
+
   /// Width of the screen
   final int width;
 

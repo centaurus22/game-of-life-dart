@@ -10,5 +10,5 @@ abstract class DisplayAdapterInterface {
   /// Prints the static elements of the screen
   ///
   /// like the background, the border of the grid, help elements.
-  void printStatic();
+  void drawStatic();
 }

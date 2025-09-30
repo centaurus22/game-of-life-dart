@@ -8,5 +8,5 @@ class MockDisplayAdapter extends DisplayAdapterInterface {
   }
 
   @override
-  void printStatic() {}
+  void drawStatic() {}
 }

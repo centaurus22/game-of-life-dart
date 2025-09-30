@@ -7,37 +7,59 @@ import 'screen.dart';
 
 /// Draws and updates the boxes and game grid
 class Controller {
-  /// Screen which directly interacts with the terminal
+  /// [Screen] which directly interacts with the terminal
   final Screen _screen;
-  /// Width and Height of the terminal screen
-  final Dimensions _dimensions;
 
-  final _topMarginGrid = 1;
-  final _rightMarginGrid = 2;
-  final _bottomMarginGrid = 4;
-  final _leftMarginGrid = 2;
+  /// Width and Height of the terminal screen
+  late Dimensions _dimensions;
+
+  /// Margin between the box border and the upper border of the screen
+  final _topMargin = 1;
+
+  /// Margin between the box border and the left border of the screen
+  final _rightMargin = 2;
+
+  /// Margin between the box border and the right border of the screen
+  final _bottomMargin = 1;
+
+  /// Margin between the box border and the bottom border of the screen
+  final _leftMargin = 2;
+
+  /// Width of the box border
+  ///
+  /// Only 1 is supported
+  final _border = 1;
+
+  /// Width of the box without the border
+  late int _boxWidth;
+
+  /// Height of the box without the border
+  late int _boxHeight;
 
   /// Initialize the Controller
-  /// 
+  ///
   /// @param _screen Screen which directly interacts with the terminal
-  Controller(this._screen): 
+  Controller(this._screen) {
     _dimensions = _screen.dimensions;
-  
+    _boxWidth = _dimensions.width - _leftMargin - _rightMargin - _border * 2;
+    _boxHeight = _dimensions.height - _topMargin - _bottomMargin - _border * 2;
+  }
 
-  Map<String, int> get dimensions => {
-    'x': (_dimensions.width - _leftMarginGrid - _rightMarginGrid) * 2,
-    'y': (_dimensions.height - _topMarginGrid - _bottomMarginGrid) * 3,
-  };
+  /// Dimensions of the box
+  Map<String, int> get dimensions => {'x': _boxWidth * 2, 'y': _boxHeight * 3};
 
+  /// Initializes the terminal
   void setUp() {
     _screen.setUp();
   }
 
+  /// Resets the terminal to default
   void tearDown() {
-    sleep(Duration(seconds: 5));
+    sleep(Duration(seconds: 20));
     _screen.tearDown();
   }
 
+  /// Draws a rainbow background
   void drawBackground() {
     final charsPerColor = _charsPerColor(_dimensions.height);
 
@@ -52,86 +74,54 @@ class Controller {
     }
   }
 
-  /// Print the static boxes to the screen.
-  ///
-  /// The boxes leave a border of two rows in every direction. They look like this:
-  /// ╔═══════╗
-  /// ║       ║
-  /// ╚╤════╤═╝
-  ///  ╰────╯
-  /// In all calculations the border does not count to the width and height of the box.
-  void drawBoxes() {
-    final startRowMain = _topMarginGrid + 1;
-    final endRowMain = _dimensions.height - _bottomMarginGrid - 1;
+  /// Draws the box to the screen
+  void drawBox() {
+    final boxStartRow = _topMargin;
+    final boxEndRow = _dimensions.height - _topMargin - _bottomMargin;
 
-    final startColumnMain = _leftMarginGrid + 1;
-    final endColumnMain = _dimensions.width - _rightMarginGrid - 1;
-    final widthMain = endColumnMain - startColumnMain;
+    final boxStartColumn = _leftMargin;
+    final boxEndColumn = _dimensions.width - _leftMargin - _rightMargin + 1;
 
-    _screen.switchToColor(Color.box.num);
+    _screen.switchToColor(Color.box.number);
 
     _screen.writeAt(
-      column: startColumnMain - 1,
-      row: startRowMain - 1,
+      column: boxStartColumn,
+      row: boxStartRow,
       text:
           Char.mainULCorner.symbol +
-          Char.mainHBorder.symbol * widthMain +
+          Char.mainHBorder.symbol * _boxWidth +
           Char.mainURCorner.symbol,
     );
 
-    for (var row = startRowMain; row <= endRowMain; row++) {
+    for (var row = boxStartRow + 1; row < boxEndRow; row++) {
       _screen.writeAt(
-        column: startColumnMain - 1,
+        column: boxStartColumn,
         row: row,
         text: Char.mainVBorder.symbol,
       );
       _screen.writeAt(
-        column: endColumnMain,
+        column: boxEndColumn,
         row: row,
         text: Char.mainVBorder.symbol,
       );
     }
 
-    _screen.cursorPosition(column: startColumnMain - 1, row: endRowMain + 1);
-
-    final startColumnSecondary =
-        1; // Relative to primary box. Must be larger than 0.
-    final widthSecondary = 30;
-    final endColumnSecondary = startColumnSecondary + widthSecondary + 1;
-
-    _screen.write(Char.mainLLCorner.symbol);
-    _screen.write(Char.mainHBorder.symbol * (startColumnSecondary - 1));
-    _screen.write(Char.downSingleHorizontalDouble.symbol);
-    _screen.write(Char.mainHBorder.symbol * (widthSecondary));
-    _screen.write(Char.downSingleHorizontalDouble.symbol);
-    _screen.write(Char.mainHBorder.symbol * (widthMain - widthSecondary - 2));
-    _screen.write(Char.mainLRCorner.symbol);
-
     _screen.writeAt(
-      column: startColumnSecondary + startColumnMain - 1,
-      row: endRowMain + 2,
-      text: Char.secondaryVBorder.symbol,
-    );
-    _screen.writeAt(
-      column: endColumnSecondary + startColumnMain - 1,
-      row: endRowMain + 2,
-      text: Char.secondaryVBorder.symbol,
-    );
-    _screen.writeAt(
-      column: startColumnSecondary + startColumnMain - 1,
-      row: endRowMain + 3,
+      column: boxStartColumn,
+      row: boxEndRow,
       text:
-          Char.secondaryLLRoundCorner.symbol +
-          Char.secondaryHBorder.symbol * widthSecondary +
-          Char.secondaryLRRoundCorner.symbol,
+          Char.mainLLCorner.symbol +
+          Char.mainHBorder.symbol * _boxWidth +
+          Char.mainLRCorner.symbol,
     );
   }
 
+  /// Draws the state of the [Grid] to the screen
   void drawGrid(List<List<bool>> grid) {
     final height = grid.length;
     final width = grid[0].length;
 
-    _screen.switchToColor(Color.cell.num);
+    _screen.switchToColor(Color.cell.number);
 
     var gridString = '';
 

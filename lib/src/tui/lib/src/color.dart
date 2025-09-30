@@ -1,12 +1,16 @@
-/// Providing color numbers to display 8-bit colors
+/// Providing color numbers to use 8-bit colors
 enum Color {
+  /// the named colors
   box(82),
   cell(20);
 
-  final int num;
+  final int number;
 
-  const Color(this.num);
+  const Color(this.number);
 
+  /// This numbers represent the colors of a rainbow in 256 colors (8 bit)
+  ///
+  /// The rainbow colors are used for the background of the application.
   static List<int> background() {
     return [
       196,
@@ -42,5 +46,6 @@ enum Color {
     ];
   }
 
+  /// The number of rainbow colors
   static int get numberBackgroundColors => background().length;
 }
