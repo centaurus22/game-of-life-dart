@@ -1,4 +1,4 @@
-import '../src/entities/coordinates.dart';
+import '../entities/coordinates.dart';
 
 /// Use case to list the [Dimensions]
 abstract class ListDimensionsInterface {

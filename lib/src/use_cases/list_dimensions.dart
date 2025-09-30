@@ -1,6 +1,6 @@
 import 'display_adapter_interface.dart';
 
-import '../src/entities/coordinates.dart';
+import '../entities/coordinates.dart';
 import 'list_dimensions_interface.dart';
 
 /// Use case to list the [Dimensions]

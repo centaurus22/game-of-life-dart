@@ -1,6 +1,6 @@
 import 'display_adapter_interface.dart';
 import 'set_up_display_interface.dart';
-import '../src/entities/coordinates.dart';
+import '../entities/coordinates.dart';
 
 /// Use case to list the [Dimensions]
 class SetUpDisplay extends SetUpDisplayInterface {

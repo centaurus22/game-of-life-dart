@@ -1,5 +1,5 @@
 import 'package:game_of_life_dart/src/entities/coordinates.dart';
-import 'package:game_of_life_dart/use_cases/display_adapter_interface.dart';
+import 'package:game_of_life_dart/src/use_cases/display_adapter_interface.dart';
 
 class MockDisplayAdapter extends DisplayAdapterInterface {
   @override

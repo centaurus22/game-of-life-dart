@@ -1,5 +1,5 @@
-import '../src/entities/coordinates.dart';
-import '../src/entities/grid.dart';
+import '../entities/coordinates.dart';
+import '../entities/grid.dart';
 
 /// Initialize the Grid
 abstract class InitializeInterface {

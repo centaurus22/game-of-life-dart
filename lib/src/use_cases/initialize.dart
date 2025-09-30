@@ -1,5 +1,5 @@
-import '../src/entities/coordinates.dart';
-import '../src/entities/grid.dart';
+import '../entities/coordinates.dart';
+import '../entities/grid.dart';
 
 import 'initialize_interface.dart';
 

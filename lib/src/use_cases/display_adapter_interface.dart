@@ -1,4 +1,4 @@
-import '../src/entities/coordinates.dart';
+import '../entities/coordinates.dart';
 
 /// The Adapter to the Screen where the simulation is displayed
 abstract class DisplayAdapterInterface {

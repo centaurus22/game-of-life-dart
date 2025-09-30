@@ -5,7 +5,7 @@ import 'package:game_of_life_dart/src/tui/lib/tui_set_up.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_tear_down.dart';
 
 import '../entities/coordinates.dart';
-import '../../use_cases/display_adapter_interface.dart';
+import '../use_cases/display_adapter_interface.dart';
 
 /// Represents the terminal where the simulation is displayed
 class TuiDisplayAdapter extends DisplayAdapterInterface {
