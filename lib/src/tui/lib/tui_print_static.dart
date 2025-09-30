@@ -1,4 +1,5 @@
-import 'src/window.dart';
+import 'src/screen.dart';
+import 'src/controller.dart';
 
 /// Prints the static elements of the screen
 ///
@@ -6,11 +7,15 @@ import 'src/window.dart';
 class TuiPrintStatic {
   /// Print the background
   void execute() {
-    final window = Window();
-    window.setUp();
-    window.drawBackground();
-    window.drawBoxes();
-    window.drawGrid([[true, true], [false, false], [true, true]]);
-    window.tearDown();
+    final controller = Controller(Screen());
+    controller.setUp();
+    controller.drawBackground();
+    controller.drawBoxes();
+    controller.drawGrid([
+      [true, true],
+      [false, false],
+      [true, true],
+    ]);
+    controller.tearDown();
   }
 }

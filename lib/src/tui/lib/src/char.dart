@@ -1,5 +1,5 @@
 enum Char {
-  backGround('⣿'),
+  background('⣿'),
 
   mainHBorder('═'),
   mainVBorder('║'),
@@ -20,6 +20,10 @@ enum Char {
   downSingleHorizontalDouble('╤'),
   downDoubleHorizontalDouble('╦'),
   upDoubleHorizontalSingle('╨');
+
+  final String symbol;
+
+  const Char(this.symbol);
 
   static String grid(int number) {
     final grid = [
@@ -89,13 +93,5 @@ enum Char {
       '█', //63
     ];
     return grid[number];
-  }
-
-  final String unicode;
-
-  const Char(this.unicode);
-
-  static String colorCode(int color) {
-    return "\u001b[38;5;${color}m";
   }
 }
