@@ -5,6 +5,9 @@ abstract class DisplayAdapterInterface {
   /// Set-up the terminal
   void setUp();
 
+  /// Reset the display back to default values
+  void tearDown();
+
   /// List the dimensions of the screen
   ///
   /// @return the [Dimensions]

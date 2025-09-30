@@ -2,6 +2,7 @@ import 'package:game_of_life_dart/src/tui/lib/tui_draw_dynamic.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_list_dimensions.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_draw_static.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_set_up.dart';
+import 'package:game_of_life_dart/src/tui/lib/tui_tear_down.dart';
 
 import '../entities/coordinates.dart';
 import '../../use_cases/display_adapter_interface.dart';
@@ -13,6 +14,13 @@ class TuiDisplayAdapter extends DisplayAdapterInterface {
   void setUp() {
     final setUp = TuiSetUp();
     setUp.execute();
+  }
+
+  @override
+  /// Reset the terminal back to the default values
+  void tearDown() {
+    final tearDown = TuiTearDown();
+    tearDown.execute();
   }
 
   @override

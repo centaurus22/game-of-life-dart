@@ -3,7 +3,10 @@ import 'package:game_of_life_dart/use_cases/display_adapter_interface.dart';
 
 class MockDisplayAdapter extends DisplayAdapterInterface {
   @override
-  void setUp() {}
+  void setUp(){}
+
+  @override
+  void tearDown() {}
 
   @override
   Dimensions listDimensions() {
