@@ -15,10 +15,10 @@ class TuiDisplayAdapter extends DisplayAdapterInterface {
     return Dimensions.fromMap(listDimensions.execute());
   }
 
+  @override
   /// Prints the static elements of the screen
   ///
   /// like the background, the border of the grid, help elements.
-  @override
   void drawStatic() {
     final drawStatic = TuiDrawStatic();
     drawStatic.execute();
