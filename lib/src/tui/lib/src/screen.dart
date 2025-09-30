@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dart_console/dart_console.dart';
+import 'package:game_of_life_dart/src/tui/lib/src/dimensions.dart';
 
 /// This interacts directly with the terminal screen
 class Screen {
@@ -19,8 +20,8 @@ class Screen {
     _console.clearScreen();
   }
 
-  Map<String, int> get dimensions {
-    return {'width': _console.windowWidth, 'height': _console.windowHeight};
+  Dimensions get dimensions {
+    return Dimensions(width: _console.windowWidth, height: _console.windowHeight);
   }
 
   void switchToColor(int number) {

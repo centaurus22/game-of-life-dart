@@ -2,30 +2,31 @@ import 'dart:io';
 
 import 'char.dart';
 import 'color.dart';
+import 'dimensions.dart';
 import 'screen.dart';
 
+/// Draws and updates the boxes and game grid
 class Controller {
+  /// Screen which directly interacts with the terminal
   final Screen _screen;
-  late int _height;
-  late int _width;
+  /// Width and Height of the terminal screen
+  final Dimensions _dimensions;
 
   final _topMarginGrid = 1;
   final _rightMarginGrid = 2;
   final _bottomMarginGrid = 4;
   final _leftMarginGrid = 2;
 
-  Controller(this._screen) {
-    final dimensions = _screen.dimensions;
-    if (!dimensions.containsKey('width') || !dimensions.containsKey('height')) {
-      throw StateError('Screen does not return width or height');
-    }
-    _width = dimensions['width']!;
-    _height = dimensions['height']!;
-  }
+  /// Initialize the Controller
+  /// 
+  /// @param _screen Screen which directly interacts with the terminal
+  Controller(this._screen): 
+    _dimensions = _screen.dimensions;
+  
 
   Map<String, int> get dimensions => {
-    'x': (_width - _leftMarginGrid - _rightMarginGrid) * 2,
-    'y': (_height - _topMarginGrid - _bottomMarginGrid) * 3,
+    'x': (_dimensions.width - _leftMarginGrid - _rightMarginGrid) * 2,
+    'y': (_dimensions.height - _topMarginGrid - _bottomMarginGrid) * 3,
   };
 
   void setUp() {
@@ -38,16 +39,16 @@ class Controller {
   }
 
   void drawBackground() {
-    final charsPerColor = _charsPerColor(_height);
+    final charsPerColor = _charsPerColor(_dimensions.height);
 
-    for (var row = 0; row < _height; row++) {
+    for (var row = 0; row < _dimensions.height; row++) {
       var colorBackground = _colorBackground(
         charsPerColor: charsPerColor,
         position: row,
       );
 
       _screen.switchToColor(colorBackground);
-      _screen.write(Char.background.symbol * _width);
+      _screen.write(Char.background.symbol * _dimensions.width);
     }
   }
 
@@ -61,10 +62,10 @@ class Controller {
   /// In all calculations the border does not count to the width and height of the box.
   void drawBoxes() {
     final startRowMain = _topMarginGrid + 1;
-    final endRowMain = _height - _bottomMarginGrid - 1;
+    final endRowMain = _dimensions.height - _bottomMarginGrid - 1;
 
     final startColumnMain = _leftMarginGrid + 1;
-    final endColumnMain = _width - _rightMarginGrid - 1;
+    final endColumnMain = _dimensions.width - _rightMarginGrid - 1;
     final widthMain = endColumnMain - startColumnMain;
 
     _screen.switchToColor(Color.box.num);
