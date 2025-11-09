@@ -1,3 +1,4 @@
+import 'package:game_of_life_dart/src/entities/grid.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_draw_dynamic.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_list_dimensions.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_draw_static.dart';
@@ -43,8 +44,10 @@ class TuiDisplayAdapter extends DisplayAdapterInterface {
 
   @override
   /// Draw the dynamic elements of the screen
-  void drawDynamic() {
+  /// 
+  /// @paramer grid The grid entity
+  void drawDynamic(Grid grid) {
     final drawDynamic = TuiDrawDynamic();
-    drawDynamic.execute();
+    drawDynamic.execute(grid.toBools);
   }
 }

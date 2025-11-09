@@ -1,4 +1,5 @@
 import '../entities/coordinates.dart';
+import '../entities/grid.dart';
 
 /// The Adapter to the Screen where the simulation is displayed
 abstract class DisplayAdapterInterface {
@@ -19,5 +20,5 @@ abstract class DisplayAdapterInterface {
   void drawStatic();
 
   /// Prints the dynamic elements of the screen
-  void drawDynamic();
+  void drawDynamic(Grid grid);
 }

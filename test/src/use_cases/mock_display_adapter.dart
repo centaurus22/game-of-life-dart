@@ -1,4 +1,5 @@
 import 'package:game_of_life_dart/src/entities/coordinates.dart';
+import 'package:game_of_life_dart/src/entities/grid.dart';
 import 'package:game_of_life_dart/src/use_cases/display_adapter_interface.dart';
 
 class MockDisplayAdapter extends DisplayAdapterInterface {
@@ -17,5 +18,5 @@ class MockDisplayAdapter extends DisplayAdapterInterface {
   void drawStatic() {}
 
   @override
-  void drawDynamic() {}
+  void drawDynamic(Grid grid) {}
 }
