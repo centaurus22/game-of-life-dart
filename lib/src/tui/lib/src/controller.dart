@@ -41,8 +41,6 @@ class Controller {
   /// @param _screen Screen which directly interacts with the terminal
   Controller(this._screen) {
     _dimensions = _screen.dimensions;
-    _boxWidth = _dimensions.width - _leftMargin - _rightMargin - _border * 2;
-    _boxHeight = _dimensions.height - _topMargin - _bottomMargin - _border * 2;
   }
 
   /// Dimensions of the box
@@ -50,6 +48,13 @@ class Controller {
 
   /// Initializes the terminal
   void setUp() {
+    _boxWidth = _dimensions.width - _leftMargin - _rightMargin - _border * 2;
+    _boxHeight = _dimensions.height - _topMargin - _bottomMargin - _border * 2;
+
+    if (_boxWidth < 1 || _boxHeight < 1) {
+      throw StdoutException("The dimensions of your screen are to small.");
+    }
+
     _screen.setUp();
   }
 
