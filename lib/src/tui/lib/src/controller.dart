@@ -55,7 +55,6 @@ class Controller {
 
   /// Resets the terminal to default
   void tearDown() {
-    sleep(Duration(seconds: 20));
     _screen.tearDown();
   }
 
