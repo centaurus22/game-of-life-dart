@@ -8,7 +8,7 @@ import 'screen.dart';
 /// Draws and updates the boxes and game grid
 class Controller {
   /// [Screen] which directly interacts with the terminal
-  final Screen _screen;
+  final ScreenInterface _screen;
 
   /// Width and Height of the terminal screen
   late Dimensions _dimensions;
@@ -28,7 +28,7 @@ class Controller {
   /// Width of the box border
   ///
   /// Only 1 is supported
-  final _border = 1;
+  final int _border = 1;
 
   /// Width of the box without the border
   late int _boxWidth;
@@ -41,8 +41,6 @@ class Controller {
   /// @param _screen Screen which directly interacts with the terminal
   Controller(this._screen) {
     _dimensions = _screen.dimensions;
-    _boxWidth = _dimensions.width - _leftMargin - _rightMargin - _border * 2;
-    _boxHeight = _dimensions.height - _topMargin - _bottomMargin - _border * 2;
   }
 
   /// Dimensions of the box
@@ -50,12 +48,18 @@ class Controller {
 
   /// Initializes the terminal
   void setUp() {
+    _boxWidth = _dimensions.width - _leftMargin - _rightMargin - _border * 2;
+    _boxHeight = _dimensions.height - _topMargin - _bottomMargin - _border * 2;
+
+    if (_boxWidth < 1 || _boxHeight < 1) {
+      throw StdoutException("The dimensions of your screen are to small.");
+    }
+
     _screen.setUp();
   }
 
   /// Resets the terminal to default
   void tearDown() {
-    sleep(Duration(seconds: 20));
     _screen.tearDown();
   }
 
@@ -118,21 +122,26 @@ class Controller {
 
   /// Draws the state of the [Grid] to the screen
   void drawGrid(List<List<bool>> grid) {
-    final height = grid.length;
-    final width = grid[0].length;
+    final height = (grid.length / 3).ceil();
+    final width = (grid[0].length / 2).ceil();
 
     _screen.switchToColor(Color.cell.number);
-
     var gridString = '';
+    var column = _leftMargin + _border;
+    var row = 0;
 
-    for (var row = 0; row < height; row += 3) {
-      for (var column = 0; column < width; column += 2) {
+    for (var r = 0; r < height; r += 1) {
+      gridString = '';
+
+      for (var c = 0; c < width; c += 1) {
         gridString += Char.grid(
-          _charIndex(grid: grid, column: column, row: row),
+          _charIndex(grid: grid, column: c * 2, row: r * 3),
         );
       }
+
+      row = _topMargin + _border + r;
+      _screen.writeAt(column: column, row: row, text: gridString);
     }
-    _screen.write(gridString);
   }
 
   int _charIndex({

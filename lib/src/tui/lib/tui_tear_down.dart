@@ -5,6 +5,6 @@ import 'src/controller.dart';
 class TuiTearDown {
   void execute() {
     final controller = Controller(Screen());
-    controller.setUp();
+    controller.tearDown();
   }
 }
