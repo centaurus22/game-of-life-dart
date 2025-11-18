@@ -33,15 +33,14 @@ class Screen implements ScreenInterface {
     _console.clearScreen();
     _console.resetCursorPosition();
     _console.hideCursor();
-    _console.rawMode = true;
   }
 
   @override
   /// Reset the terminal screen to default
   void tearDown() {
     _console.showCursor();
-    _console.rawMode = false;
     _console.clearScreen();
+    _console.resetCursorPosition();
   }
 
   @override

@@ -13,9 +13,9 @@ final class Grid {
   ///
   /// @param _dimensions The dimensions of the grid.
   Grid(this._dimensions) {
-    _cells = List.filled(
+    _cells = List.generate(
       _dimensions.y,
-      List.filled(_dimensions.x, Cell(), growable: false),
+      (_) => List.generate(_dimensions.x, (_) => Cell(), growable: false),
       growable: false,
     );
   }

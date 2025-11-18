@@ -44,7 +44,7 @@ class TuiDisplayAdapter extends DisplayAdapterInterface {
 
   @override
   /// Draw the dynamic elements of the screen
-  /// 
+  ///
   /// @paramer grid The grid entity
   void drawDynamic(Grid grid) {
     final drawDynamic = TuiDrawDynamic();

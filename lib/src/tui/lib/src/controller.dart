@@ -30,12 +30,6 @@ class Controller {
   /// Only 1 is supported
   final int _border = 1;
 
-  /// Width of the box without the border
-  late int _boxWidth;
-
-  /// Height of the box without the border
-  late int _boxHeight;
-
   /// Initialize the Controller
   ///
   /// @param _screen Screen which directly interacts with the terminal
@@ -44,17 +38,14 @@ class Controller {
   }
 
   /// Dimensions of the box
-  Map<String, int> get dimensions => {'x': _boxWidth * 2, 'y': _boxHeight * 3};
+  Map<String, int> get dimensions {
+    final boxDimensions = _calcBoxDimensions();
+    return {'x': boxDimensions.width * 2, 'y': boxDimensions.height * 3};
+  }
 
   /// Initializes the terminal
   void setUp() {
-    _boxWidth = _dimensions.width - _leftMargin - _rightMargin - _border * 2;
-    _boxHeight = _dimensions.height - _topMargin - _bottomMargin - _border * 2;
-
-    if (_boxWidth < 1 || _boxHeight < 1) {
-      throw StdoutException("The dimensions of your screen are to small.");
-    }
-
+    _calcBoxDimensions();
     _screen.setUp();
   }
 
@@ -80,6 +71,7 @@ class Controller {
 
   /// Draws the box to the screen
   void drawBox() {
+    final boxDimensions = _calcBoxDimensions();
     final boxStartRow = _topMargin;
     final boxEndRow = _dimensions.height - _topMargin - _bottomMargin;
 
@@ -93,7 +85,7 @@ class Controller {
       row: boxStartRow,
       text:
           Char.mainULCorner.symbol +
-          Char.mainHBorder.symbol * _boxWidth +
+          Char.mainHBorder.symbol * boxDimensions.width +
           Char.mainURCorner.symbol,
     );
 
@@ -115,7 +107,7 @@ class Controller {
       row: boxEndRow,
       text:
           Char.mainLLCorner.symbol +
-          Char.mainHBorder.symbol * _boxWidth +
+          Char.mainHBorder.symbol * boxDimensions.width +
           Char.mainLRCorner.symbol,
     );
   }
@@ -142,6 +134,18 @@ class Controller {
       row = _topMargin + _border + r;
       _screen.writeAt(column: column, row: row, text: gridString);
     }
+  }
+
+  Dimensions _calcBoxDimensions() {
+    var boxWidth = _dimensions.width - _leftMargin - _rightMargin - _border * 2;
+    var boxHeight =
+        _dimensions.height - _topMargin - _bottomMargin - _border * 2;
+
+    if (boxWidth < 1 || boxHeight < 1) {
+      throw StdoutException("The dimensions of your screen are too small.");
+    }
+
+    return (Dimensions(width: boxWidth, height: boxHeight));
   }
 
   int _charIndex({
