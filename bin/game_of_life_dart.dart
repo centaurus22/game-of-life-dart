@@ -20,6 +20,8 @@ void main() {
   var drawDynamic = DrawDynamic(displayAdapter);
   var simulateStep = SimulateStep();
 
+  var error = '';
+
   try {
     setUpDisplay.execute();
     drawStatic.execute();
@@ -27,9 +29,16 @@ void main() {
     var grid = initialize.execute(dimensions);
     enterLoop(grid, drawDynamic, simulateStep);
   } on StdoutException catch (e) {
-    print(e);
+    error = e.toString();
   } finally {
     tearDownDisplay.execute();
+    
+    if (error != '') {
+      print(error);
+      exit(1);
+    }
+
+    exit(0);
   }
 }
 
