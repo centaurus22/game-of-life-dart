@@ -106,6 +106,12 @@ void main() {
       expect(call2.parameters['row'], 2);
     });
 
+    test('read key from keyboard', () {
+      controller.readKey();
+      var call = screen.call(1);
+      expect(call.method, 'readKey');
+    });
+
     test('draw larger grid', () {
       controller.drawGrid([
         [true, true],

@@ -1,3 +1,4 @@
+import 'package:dart_console/dart_console.dart';
 import 'package:game_of_life_dart/src/tui/lib/src/dimensions.dart';
 import 'package:game_of_life_dart/src/tui/lib/src/screen.dart';
 
@@ -53,5 +54,11 @@ class MockScreen implements ScreenInterface {
   @override
   void write(String text) {
     _methodCalls.add(MethodCall('write', {'text': text}));
+  }
+
+  @override
+  Key readKey() {
+    _methodCalls.add(MethodCall('readKey', {}));
+    return Key.printable('q');
   }
 }

@@ -1,5 +1,6 @@
-import '../entities/coordinates.dart';
-import '../entities/grid.dart';
+import '../entity/coordinates.dart';
+import '../entity/grid.dart';
+import '../enum/key.dart';
 
 /// The Adapter to the Screen where the simulation is displayed
 abstract class DisplayAdapterInterface {
@@ -21,4 +22,7 @@ abstract class DisplayAdapterInterface {
 
   /// Prints the dynamic elements of the screen
   void drawDynamic(Grid grid);
+
+  /// Get a key press from the keyboard
+  Key readKey();
 }

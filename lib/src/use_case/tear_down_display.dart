@@ -1,5 +1,9 @@
 import 'display_adapter_interface.dart';
-import 'tear_down_display_interface.dart';
+
+/// Reset the display back to default values
+abstract class TearDownDisplayInterface {
+  void execute();
+}
 
 /// Reset the display to default values
 class TearDownDisplay extends TearDownDisplayInterface {

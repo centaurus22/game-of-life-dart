@@ -1,6 +1,10 @@
 import 'display_adapter_interface.dart';
-import 'set_up_display_interface.dart';
-import '../entities/coordinates.dart';
+import '../entity/coordinates.dart';
+
+/// Set-up the display which displays the simulation
+abstract class SetUpDisplayInterface {
+  void execute();
+}
 
 /// Use case to list the [Dimensions]
 class SetUpDisplay extends SetUpDisplayInterface {

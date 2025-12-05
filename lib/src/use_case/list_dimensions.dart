@@ -1,7 +1,14 @@
 import 'display_adapter_interface.dart';
 
-import '../entities/coordinates.dart';
-import 'list_dimensions_interface.dart';
+import '../entity/coordinates.dart';
+
+/// Use case to list the [Dimensions]
+abstract class ListDimensionsInterface {
+  /// List the [Dimensions]
+  ///
+  /// @return [Dimensions] of the screen.
+  Dimensions execute();
+}
 
 /// Use case to list the [Dimensions]
 class ListDimensions extends ListDimensionsInterface {

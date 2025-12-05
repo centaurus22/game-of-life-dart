@@ -11,6 +11,7 @@ abstract interface class ScreenInterface {
   void writeAt({required int column, required int row, required String text});
   void cursorPosition({required int column, required int row});
   void write(String text);
+  Key readKey();
 }
 
 /// This interacts directly with the terminal screen
@@ -79,5 +80,10 @@ class Screen implements ScreenInterface {
   /// @param text The String
   void write(String text) {
     stdout.write(text);
+  }
+
+  @override
+  Key readKey() {
+    return _console.readKey();
   }
 }

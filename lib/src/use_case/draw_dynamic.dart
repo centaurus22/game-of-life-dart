@@ -1,7 +1,16 @@
-import '../entities/grid.dart';
+import '../entity/grid.dart';
 
 import 'display_adapter_interface.dart';
-import 'draw_dynamic_interface.dart';
+
+/// Draw the dynamic elements of the screen
+///
+/// Like the grid.
+abstract class DrawDynamicInterface {
+  /// Print the dynamic elements to the screen
+  ///
+  /// @param The curred [Grid]
+  void execute(Grid grid);
+}
 
 /// Prints the dynamic elements of the screen
 ///
@@ -16,7 +25,7 @@ class DrawDynamic extends DrawDynamicInterface {
   DrawDynamic(this._displayAdapter);
 
   @override
-  /// Print the dynmic elements to the screen
+  /// Print the dynamic elements to the screen
   void execute(Grid grid) {
     _displayAdapter.drawDynamic(grid);
   }

@@ -1,14 +1,14 @@
 import 'dart:io';
 
-import 'package:game_of_life_dart/src/adapters/tui_display_adapter.dart';
-import 'package:game_of_life_dart/src/entities/grid.dart';
-import 'package:game_of_life_dart/src/use_cases/draw_dynamic.dart';
-import 'package:game_of_life_dart/src/use_cases/draw_static.dart';
-import 'package:game_of_life_dart/src/use_cases/initialize.dart';
-import 'package:game_of_life_dart/src/use_cases/list_dimensions.dart';
-import 'package:game_of_life_dart/src/use_cases/set_up_display.dart';
-import 'package:game_of_life_dart/src/use_cases/simulate_step.dart';
-import 'package:game_of_life_dart/src/use_cases/tear_down_display.dart';
+import 'package:game_of_life_dart/src/adapter/tui_display_adapter.dart';
+import 'package:game_of_life_dart/src/entity/grid.dart';
+import 'package:game_of_life_dart/src/use_case/draw_dynamic.dart';
+import 'package:game_of_life_dart/src/use_case/draw_static.dart';
+import 'package:game_of_life_dart/src/use_case/initialize.dart';
+import 'package:game_of_life_dart/src/use_case/list_dimensions.dart';
+import 'package:game_of_life_dart/src/use_case/set_up_display.dart';
+import 'package:game_of_life_dart/src/use_case/simulate_step.dart';
+import 'package:game_of_life_dart/src/use_case/tear_down_display.dart';
 
 void main() {
   var displayAdapter = TuiDisplayAdapter();
@@ -32,7 +32,7 @@ void main() {
     error = e.toString();
   } finally {
     tearDownDisplay.execute();
-    
+
     if (error != '') {
       print(error);
       exit(1);

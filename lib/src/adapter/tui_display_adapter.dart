@@ -1,12 +1,14 @@
-import 'package:game_of_life_dart/src/entities/grid.dart';
+import 'package:game_of_life_dart/src/entity/grid.dart';
+import 'package:game_of_life_dart/src/enum/key.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_draw_dynamic.dart';
+import 'package:game_of_life_dart/src/tui/lib/read_key.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_list_dimensions.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_draw_static.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_set_up.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_tear_down.dart';
 
-import '../entities/coordinates.dart';
-import '../use_cases/display_adapter_interface.dart';
+import '../entity/coordinates.dart';
+import '../use_case/display_adapter_interface.dart';
 
 /// Represents the terminal where the simulation is displayed
 class TuiDisplayAdapter extends DisplayAdapterInterface {
@@ -45,9 +47,24 @@ class TuiDisplayAdapter extends DisplayAdapterInterface {
   @override
   /// Draw the dynamic elements of the screen
   ///
-  /// @paramer grid The grid entity
+  /// @parameter grid The grid entity
   void drawDynamic(Grid grid) {
     final drawDynamic = TuiDrawDynamic();
     drawDynamic.execute(grid.toBools);
+  }
+
+  @override
+  /// Read a key from the keyboard
+  ///
+  /// @return a [Key] enum
+  Key readKey() {
+    final readKey = TuiReadKey();
+    var key = readKey.execute();
+
+    if (key.isControl && key.char == 'q') {
+      return Key.q;
+    }
+
+    return Key.none;
   }
 }
