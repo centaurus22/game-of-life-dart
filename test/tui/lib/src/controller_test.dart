@@ -107,9 +107,9 @@ void main() {
     });
 
     test('read key from keyboard', () {
-      controller.readKey();
+      controller.keyStream;
       var call = screen.call(1);
-      expect(call.method, 'readKey');
+      expect(call.method, 'keyStream');
     });
 
     test('draw larger grid', () {

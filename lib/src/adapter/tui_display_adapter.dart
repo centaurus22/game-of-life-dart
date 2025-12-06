@@ -1,13 +1,14 @@
-import 'package:game_of_life_dart/src/entity/grid.dart';
-import 'package:game_of_life_dart/src/enum/key.dart';
+import 'dart:async';
+
 import 'package:game_of_life_dart/src/tui/lib/tui_draw_dynamic.dart';
-import 'package:game_of_life_dart/src/tui/lib/read_key.dart';
+import 'package:game_of_life_dart/src/tui/lib/provide_key_stream.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_list_dimensions.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_draw_static.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_set_up.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_tear_down.dart';
 
 import '../entity/coordinates.dart';
+import '../entity/grid.dart';
 import '../use_case/display_adapter_interface.dart';
 
 /// Represents the terminal where the simulation is displayed
@@ -57,14 +58,8 @@ class TuiDisplayAdapter extends DisplayAdapterInterface {
   /// Read a key from the keyboard
   ///
   /// @return a [Key] enum
-  Key readKey() {
-    final readKey = TuiReadKey();
-    var key = readKey.execute();
-
-    if (key.isControl && key.char == 'q') {
-      return Key.q;
-    }
-
-    return Key.none;
+  StreamSubscription<String> provideKeyStream() {
+    final provideKeyStream = TuiProvideKeyStream();
+    return provideKeyStream.execute();
   }
 }

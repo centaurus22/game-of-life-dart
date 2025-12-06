@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:game_of_life_dart/src/adapter/tui_display_adapter.dart';
@@ -6,6 +7,7 @@ import 'package:game_of_life_dart/src/use_case/draw_dynamic.dart';
 import 'package:game_of_life_dart/src/use_case/draw_static.dart';
 import 'package:game_of_life_dart/src/use_case/initialize.dart';
 import 'package:game_of_life_dart/src/use_case/list_dimensions.dart';
+import 'package:game_of_life_dart/src/use_case/provide_key_stream.dart';
 import 'package:game_of_life_dart/src/use_case/set_up_display.dart';
 import 'package:game_of_life_dart/src/use_case/simulate_step.dart';
 import 'package:game_of_life_dart/src/use_case/tear_down_display.dart';
@@ -19,33 +21,37 @@ void main() {
   var initialize = Initialize();
   var drawDynamic = DrawDynamic(displayAdapter);
   var simulateStep = SimulateStep();
-
-  var error = '';
+  var provideKeyStream = ProvideKeyStream(displayAdapter);
 
   try {
     setUpDisplay.execute();
     drawStatic.execute();
     var dimensions = listDimensions.execute();
     var grid = initialize.execute(dimensions);
-    enterLoop(grid, drawDynamic, simulateStep);
+
+    var keyStream = provideKeyStream.execute();
+    keyStream.onData((keys) => processKey(keys[0], tearDownDisplay));
+
+    Timer.periodic(
+      Duration(seconds: 0),
+      (_) => loop(grid, drawDynamic, simulateStep),
+    );
   } on StdoutException catch (e) {
-    error = e.toString();
-  } finally {
     tearDownDisplay.execute();
-
-    if (error != '') {
-      print(error);
-      exit(1);
-    }
-
-    exit(0);
+    print(e.toString());
+    exit(1);
   }
 }
 
-void enterLoop(Grid grid, DrawDynamic drawDynamic, SimulateStep simulateStep) {
-  while (true) {
-    drawDynamic.execute(grid);
-    simulateStep.execute(grid);
-    sleep(Duration(milliseconds: 500));
+void loop(Grid grid, DrawDynamic drawDynamic, SimulateStep simulateStep) {
+  drawDynamic.execute(grid);
+  simulateStep.execute(grid);
+  sleep(Duration(milliseconds: 500));
+}
+
+void processKey(String key, TearDownDisplay tearDownDisplay) {
+  if (key == 'q') {
+    tearDownDisplay.execute();
+    exit(0);
   }
 }

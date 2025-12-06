@@ -1,6 +1,5 @@
+import 'dart:async';
 import 'dart:io';
-
-import 'package:dart_console/dart_console.dart';
 
 import 'char.dart';
 import 'color.dart';
@@ -44,6 +43,8 @@ class Controller {
     final boxDimensions = _calcBoxDimensions();
     return {'x': boxDimensions.width * 2, 'y': boxDimensions.height * 3};
   }
+
+  StreamSubscription<String> get keyStream => _screen.keyStream;
 
   /// Initializes the terminal
   void setUp() {
@@ -136,10 +137,6 @@ class Controller {
       row = _topMargin + _border + r;
       _screen.writeAt(column: column, row: row, text: gridString);
     }
-  }
-
-  Key readKey() {
-    return _screen.readKey();
   }
 
   Dimensions _calcBoxDimensions() {

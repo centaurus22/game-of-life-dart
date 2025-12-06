@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dart_console/dart_console.dart';
@@ -5,13 +7,13 @@ import 'package:game_of_life_dart/src/tui/lib/src/dimensions.dart';
 
 abstract interface class ScreenInterface {
   Dimensions get dimensions;
+  StreamSubscription<String> get keyStream;
   void setUp();
   void tearDown();
   void switchToColor(int number);
   void writeAt({required int column, required int row, required String text});
   void cursorPosition({required int column, required int row});
   void write(String text);
-  Key readKey();
 }
 
 /// This interacts directly with the terminal screen
@@ -29,11 +31,17 @@ class Screen implements ScreenInterface {
   }
 
   @override
+  StreamSubscription<String> get keyStream =>
+      stdin.transform(utf8.decoder).listen((_) => {});
+
+  @override
   /// Set up the terminal screen
   void setUp() {
     _console.clearScreen();
     _console.resetCursorPosition();
     _console.hideCursor();
+    stdin.echoMode = false;
+    stdin.lineMode = false;
   }
 
   @override
@@ -42,6 +50,7 @@ class Screen implements ScreenInterface {
     _console.showCursor();
     _console.clearScreen();
     _console.resetCursorPosition();
+    stdin.echoMode = true;
   }
 
   @override
@@ -80,10 +89,5 @@ class Screen implements ScreenInterface {
   /// @param text The String
   void write(String text) {
     stdout.write(text);
-  }
-
-  @override
-  Key readKey() {
-    return _console.readKey();
   }
 }

@@ -1,4 +1,7 @@
-import 'package:dart_console/dart_console.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:game_of_life_dart/src/tui/lib/src/dimensions.dart';
 import 'package:game_of_life_dart/src/tui/lib/src/screen.dart';
 
@@ -23,6 +26,12 @@ class MockScreen implements ScreenInterface {
 
   @override
   Dimensions get dimensions => _dimensions;
+
+  @override
+  StreamSubscription<String> get keyStream {
+    _methodCalls.add(MethodCall('keyStream', {}));
+    return stdin.transform(utf8.decoder).listen((_) => {});
+  }
 
   @override
   void setUp() {
@@ -54,11 +63,5 @@ class MockScreen implements ScreenInterface {
   @override
   void write(String text) {
     _methodCalls.add(MethodCall('write', {'text': text}));
-  }
-
-  @override
-  Key readKey() {
-    _methodCalls.add(MethodCall('readKey', {}));
-    return Key.printable('q');
   }
 }
