@@ -1,11 +1,19 @@
-/// Dimensions of the screen
+
+  /// Dimensions
+  /// 
+  /// A width and a height 
 class Dimensions {
-  /// Width of the screen
+  /// The width
   final int width;
 
-  /// Height of the screen
+  /// The height
   final int height;
 
-  /// Initialize the object
+  /// Dimensions
+  /// 
+  /// A width and a height 
+  /// 
+  /// @param width The width
+  /// @param height The height
   Dimensions({required this.width, required this.height});
 }

@@ -6,39 +6,39 @@ import 'color.dart';
 import 'dimensions.dart';
 import 'screen.dart';
 
-/// Draws and updates the boxes and game grid
+/// The Controller which provides methods for a tui interface
 class Controller {
   /// [Screen] which directly interacts with the terminal
   final ScreenInterface _screen;
 
-  /// Width and Height of the terminal screen
+  /// The width and height of the terminal screen
   late Dimensions _dimensions;
 
-  /// Margin between the box border and the upper border of the screen
+  /// The margin between the box border and the upper border of the screen
   final _topMargin = 1;
 
-  /// Margin between the box border and the left border of the screen
+  /// The margin between the box border and the left border of the screen
   final _rightMargin = 2;
 
-  /// Margin between the box border and the right border of the screen
+  /// The margin between the box border and the right border of the screen
   final _bottomMargin = 1;
 
-  /// Margin between the box border and the bottom border of the screen
+  /// The margin between the box border and the bottom border of the screen
   final _leftMargin = 2;
 
-  /// Width of the box border
+  /// The width of the box border
   ///
-  /// Only 1 is supported
+  /// Only a width of 1 is supported right now
   final int _border = 1;
 
-  /// Initialize the Controller
+  /// The Controller which provides methods for a tui interface
   ///
   /// @param _screen Screen which directly interacts with the terminal
   Controller(this._screen) {
     _dimensions = _screen.dimensions;
   }
 
-  /// Dimensions of the box
+  /// The usable dimensions of the main box
   Map<String, int> get dimensions {
     final boxDimensions = _calcBoxDimensions();
     return {'x': boxDimensions.width * 2, 'y': boxDimensions.height * 3};
@@ -47,6 +47,9 @@ class Controller {
   StreamSubscription<String> get keyStream => _screen.keyStream;
 
   /// Initializes the terminal
+  /// 
+  /// * Calculate the usable dimensions of the screen
+  /// * Set the terminal settings
   void setUp() {
     _calcBoxDimensions();
     _screen.setUp();
@@ -57,7 +60,7 @@ class Controller {
     _screen.tearDown();
   }
 
-  /// Draws a rainbow background
+  /// Draws a rainbow background to the terminal
   void drawBackground() {
     final charsPerColor = _charsPerColor(_dimensions.height);
 
@@ -72,7 +75,7 @@ class Controller {
     }
   }
 
-  /// Draws the box to the screen
+  /// Draws the main box to the screen
   void drawBox() {
     final boxDimensions = _calcBoxDimensions();
     final boxStartRow = _topMargin;

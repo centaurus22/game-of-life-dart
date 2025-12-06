@@ -14,7 +14,7 @@ abstract class DisplayAdapterInterface {
   /// List the dimensions of the screen
   ///
   /// @return the [Dimensions]
-  Dimensions listDimensions();
+  Dimensions provideDimensions();
 
   /// Prints the static elements of the screen
   ///

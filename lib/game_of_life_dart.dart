@@ -3,7 +3,7 @@ import 'src/entity/grid.dart';
 import 'src/use_case/display_adapter_interface.dart';
 import 'src/use_case/draw_static.dart';
 import 'src/use_case/initialize.dart';
-import 'src/use_case/list_dimensions.dart';
+import 'src/use_case/provide_dimensions.dart';
 import 'src/use_case/set_up_display.dart';
 import 'src/use_case/simulate_step.dart';
 import 'src/use_case/tear_down_display.dart';

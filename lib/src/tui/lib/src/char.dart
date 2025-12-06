@@ -1,4 +1,4 @@
-/// Providing chars for boxes, background and cells
+/// Provides chars for boxes, background and cells
 enum Char {
   /// The named symbols
   background('⣿'),

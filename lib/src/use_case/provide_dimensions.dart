@@ -25,6 +25,6 @@ class ListDimensions extends ListDimensionsInterface {
     /// List the [Dimensions]
     ///
     /// @return [Dimensions] of the screen.
-    return _displayAdapter.listDimensions();
+    return _displayAdapter.provideDimensions();
   }
 }

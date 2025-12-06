@@ -14,7 +14,7 @@ class MockDisplayAdapter extends DisplayAdapterInterface {
   void tearDown() {}
 
   @override
-  Dimensions listDimensions() {
+  Dimensions provideDimensions() {
     return Dimensions.set(x: 80, y: 25);
   }
 

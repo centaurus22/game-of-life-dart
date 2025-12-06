@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:game_of_life_dart/src/tui/lib/tui_draw_dynamic.dart';
 import 'package:game_of_life_dart/src/tui/lib/provide_key_stream.dart';
-import 'package:game_of_life_dart/src/tui/lib/tui_list_dimensions.dart';
+import 'package:game_of_life_dart/src/tui/lib/tui_provide_dimensions.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_draw_static.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_set_up.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_tear_down.dart';
@@ -31,9 +31,9 @@ class TuiDisplayAdapter extends DisplayAdapterInterface {
   /// List the dimensions of the screen
   ///
   /// @return the [Dimensions]
-  Dimensions listDimensions() {
-    final listDimensions = TuiListDimensions();
-    return Dimensions.fromMap(listDimensions.execute());
+  Dimensions provideDimensions() {
+    final provideDimensions = TuiProvideDimensions();
+    return Dimensions.fromMap(provideDimensions.execute());
   }
 
   @override
