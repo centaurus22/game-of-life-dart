@@ -1,23 +1,23 @@
 import 'display_adapter_interface.dart';
-import '../entity/coordinates.dart';
 
-/// Set-up the display which displays the simulation
+/// Command that sets-up the screen which displays the simulation.
 abstract class SetUpDisplayInterface {
+  /// Execute the command: Sets-up the screen which displays the simulation.
   void execute();
 }
 
-/// Use case to list the [Dimensions]
+/// Command that sets-up the screen which displays the simulation.
 class SetUpDisplay extends SetUpDisplayInterface {
-  /// External DisplayAdapter object to interact with the screen
+  /// External [DisplayAdapterInterface] to interact with the screen
   final DisplayAdapterInterface _displayAdapter;
 
-  /// Initialize this use case object
+  /// Command that sets-up the screen which displays the simulation.
   ///
-  /// @param _displayAdapter the used DisplayAdapter object
+  /// @param _displayAdapter External [DisplayAdapterInterface] to interact with the screen.
   SetUpDisplay(this._displayAdapter);
 
+  /// Execute the command: Sets-up the screen which displays the simulation.
   @override
-  /// Set-up the display which displays the simulation
   void execute() {
     return _displayAdapter.setUp();
   }

@@ -6,7 +6,7 @@ import 'package:game_of_life_dart/src/entity/grid.dart';
 import 'package:game_of_life_dart/src/use_case/draw_dynamic.dart';
 import 'package:game_of_life_dart/src/use_case/draw_static.dart';
 import 'package:game_of_life_dart/src/use_case/initialize.dart';
-import 'package:game_of_life_dart/src/use_case/provide_dimensions.dart';
+import 'package:game_of_life_dart/src/use_case/list_dimensions.dart';
 import 'package:game_of_life_dart/src/use_case/provide_key_stream.dart';
 import 'package:game_of_life_dart/src/use_case/set_up_display.dart';
 import 'package:game_of_life_dart/src/use_case/simulate_step.dart';

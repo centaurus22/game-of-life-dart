@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:game_of_life_dart/src/tui/lib/tui_draw_dynamic.dart';
-import 'package:game_of_life_dart/src/tui/lib/provide_key_stream.dart';
-import 'package:game_of_life_dart/src/tui/lib/tui_provide_dimensions.dart';
+import 'package:game_of_life_dart/src/tui/lib/tui_provide_key_stream.dart';
+import 'package:game_of_life_dart/src/tui/lib/tui_list_dimensions.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_draw_static.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_set_up.dart';
 import 'package:game_of_life_dart/src/tui/lib/tui_tear_down.dart';
@@ -11,53 +11,53 @@ import '../entity/coordinates.dart';
 import '../entity/grid.dart';
 import '../use_case/display_adapter_interface.dart';
 
-/// Represents the terminal where the simulation is displayed
+/// Represents the terminal where the simulation is displayed.
 class TuiDisplayAdapter extends DisplayAdapterInterface {
-  @override
   /// Sets up the terminal
+  @override
   void setUp() {
     final setUp = TuiSetUp();
     setUp.execute();
   }
 
+  /// Reset the terminal back to the default values.
   @override
-  /// Reset the terminal back to the default values
   void tearDown() {
     final tearDown = TuiTearDown();
     tearDown.execute();
   }
 
-  @override
-  /// List the dimensions of the screen
+  /// List the dimensions of the screen.
   ///
-  /// @return the [Dimensions]
+  /// @return the [Dimensions].
+  @override
   Dimensions provideDimensions() {
-    final provideDimensions = TuiProvideDimensions();
-    return Dimensions.fromMap(provideDimensions.execute());
+    final listDimensions = TuiListDimensions();
+    return Dimensions.fromMap(listDimensions.execute());
   }
 
-  @override
-  /// Prints the static elements of the screen
+  /// Prints the static elements onto the screen.
   ///
-  /// like the background, the border of the grid, help elements.
+  /// Prints the background, the border of the grid, help elements.
+  @override
   void drawStatic() {
     final drawStatic = TuiDrawStatic();
     drawStatic.execute();
   }
 
-  @override
-  /// Draw the dynamic elements of the screen
+  /// Prints the dynamic elements onto the screen.
   ///
-  /// @parameter grid The grid entity
+  /// @parameter grid The [Grid].
+  @override
   void drawDynamic(Grid grid) {
     final drawDynamic = TuiDrawDynamic();
     drawDynamic.execute(grid.toBools);
   }
 
+  /// Returns a [StreamSubscription] which provides a Stream of pressend keys
+  /// 
+  /// @returns [StreamSubscription]. The stream contains pressed keys which are printable as utf8 strings.
   @override
-  /// Read a key from the keyboard
-  ///
-  /// @return a [Key] enum
   StreamSubscription<String> provideKeyStream() {
     final provideKeyStream = TuiProvideKeyStream();
     return provideKeyStream.execute();

@@ -3,27 +3,32 @@ import 'dart:async';
 import '../entity/coordinates.dart';
 import '../entity/grid.dart';
 
-/// The Adapter to the Screen where the simulation is displayed
+/// The adapter to the screen where the simulation is displayed
 abstract class DisplayAdapterInterface {
-  /// Set-up the terminal
+  /// Sets-up the screen
   void setUp();
 
-  /// Reset the display back to default values
+  /// Resets the display back to default values
   void tearDown();
 
-  /// List the dimensions of the screen
-  ///
+  /// List the dimensions of the screen in terms of grid cells
+  /// 
+  /// The simulation lives in the grid cells.
   /// @return the [Dimensions]
   Dimensions provideDimensions();
 
-  /// Prints the static elements of the screen
+  /// Prints the static elements onto the screen
   ///
-  /// like the background, the border of the grid, help elements.
+  /// Prints the background, the border of the grid, help elements.
   void drawStatic();
 
-  /// Prints the dynamic elements of the screen
+  /// Prints the dynamic elements onto the screen
+  /// 
+  /// @param grid The simulation [Grid]
   void drawDynamic(Grid grid);
 
-  /// Get a key press from the keyboard
+  /// Provides a [StreamSubscription] for a stream with pressed keys
+  /// 
+  /// @return [StreamSubscription] with pressed keys as utf8 strings
   StreamSubscription<String> provideKeyStream();
 }

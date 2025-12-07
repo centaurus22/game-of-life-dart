@@ -22,10 +22,10 @@ class Screen implements ScreenInterface {
   /// The Console object
   final _console = Console();
 
-  @override
   /// The dimensions of the terminal screen
   /// 
   /// @return [Dimensions] with a width and a height
+  @override
   Dimensions get dimensions {
     return Dimensions(
       width: _console.windowWidth,
@@ -33,15 +33,15 @@ class Screen implements ScreenInterface {
     );
   }
 
-  @override
   /// A [StreamSubscription] which provides pressed keys on the keyboard.
   /// 
   /// @return [StreamSubscription] wich provides a [List] of pressed printable keys represented as unicode.
+  @override
   StreamSubscription<String> get keyStream =>
       stdin.transform(utf8.decoder).listen((_) => {});
 
-  @override
   /// Set up the terminal screen
+  @override
   void setUp() {
     _console.clearScreen();
     _console.resetCursorPosition();
@@ -50,8 +50,8 @@ class Screen implements ScreenInterface {
     stdin.lineMode = false;
   }
 
-  @override
   /// Reset the terminal screen to default
+  @override
   void tearDown() {
     _console.showCursor();
     _console.clearScreen();
@@ -59,40 +59,40 @@ class Screen implements ScreenInterface {
     stdin.echoMode = true;
   }
 
-  @override
   /// Switch the foreground color
   ///
   /// @param number The color number which represents an 8-bit color
   ///
   /// The next printable string will be drawn to the terminal screen in this foreground color
+  @override
   void switchToColor(int number) {
     write("\u001b[38;5;${number}m");
   }
 
-  @override
   /// Write a string which begins at determined position on the terminal screen
   ///
   /// @param column The column where the next written string starts
   /// @param row The row where the next written string starts
   /// @param text The [String] which should be printed to the screen
+  @override
   void writeAt({required int column, required int row, required String text}) {
     cursorPosition(column: column, row: row);
     write(text);
   }
 
-  @override
   /// Sets the position of the text cursor
   ///
   /// @param column The column where the next string will be written
   /// @param row The row where the next string will be written
+  @override
   void cursorPosition({required int column, required int row}) {
     _console.cursorPosition = Coordinate(row, column);
   }
 
-  @override
   /// Write a [String] to the current position on the terminal screen
   ///
   /// @param text The [String] which should be written
+  @override
   void write(String text) {
     stdout.write(text);
   }

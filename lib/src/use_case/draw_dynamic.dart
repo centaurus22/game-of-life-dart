@@ -2,30 +2,33 @@ import '../entity/grid.dart';
 
 import 'display_adapter_interface.dart';
 
-/// Draw the dynamic elements of the screen
+/// Command that draws the dynamic elements onto the screen.
 ///
-/// Like the grid.
+/// The dynamic elements contain the [Grid].
 abstract class DrawDynamicInterface {
-  /// Print the dynamic elements to the screen
+  /// Execute the command: Print the dynamic elements onto the screen.
   ///
-  /// @param The curred [Grid]
+  /// @param grid The curred [Grid].
   void execute(Grid grid);
 }
 
-/// Prints the dynamic elements of the screen
+/// Command that draws the dynamic elements onto the screen.
 ///
-/// like the grid
+/// The dynamic elements contain the [Grid].
 class DrawDynamic extends DrawDynamicInterface {
-  /// External DisplayAdapter object to interact with the screen
+  /// External [DisplayAdapterInterface] to interact with the screen.
   final DisplayAdapterInterface _displayAdapter;
 
-  /// Initialize the object
+  /// Command that draws the dynamic elements onto the screen.
   ///
-  /// @param _displayAdapter external Display
+  /// The dynamic elements contain the [Grid].
+  /// @param _displayAdapter External [DisplayAdapterInterface] to interact with the screen
   DrawDynamic(this._displayAdapter);
 
+  /// Execute the command: Print the dynamic elements onto the screen.
+  ///
+  /// @param grid The curred [Grid].
   @override
-  /// Print the dynamic elements to the screen
   void execute(Grid grid) {
     _displayAdapter.drawDynamic(grid);
   }

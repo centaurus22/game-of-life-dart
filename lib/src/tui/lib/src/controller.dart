@@ -55,12 +55,12 @@ class Controller {
     _screen.setUp();
   }
 
-  /// Resets the terminal to default
+  /// Resets the terminal screen to it's default settings
   void tearDown() {
     _screen.tearDown();
   }
 
-  /// Draws a rainbow background to the terminal
+  /// Draws a rainbow background onto the terminal screen
   void drawBackground() {
     final charsPerColor = _charsPerColor(_dimensions.height);
 
@@ -75,7 +75,7 @@ class Controller {
     }
   }
 
-  /// Draws the main box to the screen
+  /// Draws the main box onto the terminal screen
   void drawBox() {
     final boxDimensions = _calcBoxDimensions();
     final boxStartRow = _topMargin;
@@ -118,7 +118,7 @@ class Controller {
     );
   }
 
-  /// Draws the state of the [Grid] to the screen
+  /// Draws the state of the grid onto the terminal screen
   void drawGrid(List<List<bool>> grid) {
     final height = (grid.length / 3).ceil();
     final width = (grid[0].length / 2).ceil();

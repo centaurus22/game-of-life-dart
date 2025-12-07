@@ -1,22 +1,22 @@
 import '../entity/coordinates.dart';
 import '../entity/grid.dart';
 
-/// Initialize the Grid
+/// Command that initializes the [Grid].
 abstract class InitializeInterface {
-  /// Initialize the Grid
+  /// Execute the command: Initialize the [Grid].
   ///
   /// @param dimensions [Dimensions] of the new [Grid].
   /// @return the new [Grid].
   Grid execute(Dimensions dimensions);
 }
 
-/// Initialize the Grid
+/// Command that initializes the [Grid].
 final class Initialize extends InitializeInterface {
-  @override
-  /// Initialize the Grid
+  /// Execute the command: Initialize the [Grid].
   ///
   /// @param dimensions [Dimensions] of the new [Grid].
   /// @return the new [Grid].
+  @override
   Grid execute(Dimensions dimensions) {
     return Grid(dimensions);
   }

@@ -2,24 +2,28 @@ import 'dart:async';
 
 import 'display_adapter_interface.dart';
 
-/// Get a key press from the screen
+/// Command which returns a [StreamSubscription] which provides a Stream of pressend keys.
 abstract class ProvideKeyStreamInterface {
-  /// Read a keyboard event
-  ///
-  /// @return the event
+  /// Execute the command: Return a [StreamSubscription].
+  /// 
+  /// @returns [StreamSubscription]. The stream contains pressed keys which are printable as utf8 strings.
   StreamSubscription<String> execute();
 }
 
-/// Get a key press from the screen
+/// Command which returns a [StreamSubscription] which provides a Stream of pressend keys.
 final class ProvideKeyStream implements ProvideKeyStreamInterface {
+  /// External [DisplayAdapterInterface] to interact with the screen.
   final DisplayAdapterInterface _displayAdapter;
 
+  /// Command which returns a [StreamSubscription] which provides a Stream of pressend keys.
+  /// 
+  /// @param _displayAdapter External [DisplayAdapterInterface] to interact with the screen.
   ProvideKeyStream(this._displayAdapter);
 
+  /// Execute the command: Return a [StreamSubscription].
+  /// 
+  /// @return [StreamSubscription]. The stream contains pressed keys which are printable as utf8 strings.
   @override
-  /// Get a key press from the keyboard
-  ///
-  /// @return the pressed [Key]
   StreamSubscription<String> execute() {
     return _displayAdapter.provideKeyStream();
   }

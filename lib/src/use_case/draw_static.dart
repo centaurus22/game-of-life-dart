@@ -1,27 +1,28 @@
 import 'display_adapter_interface.dart';
 
-/// Draw the static elements of the screen
+/// Command that draws the static elements onto the screen.
 ///
-/// Like the background, the border of the grid, help elements.
+/// This draws the background, the border of the grid, help elements.
 abstract class DrawStaticInterface {
-  /// Print the static elements to the screen
+  /// Execute the command: Print the static elements onto the screen.
   void execute();
 }
 
-/// Prints the static elements of the screen
+/// Command that draws the static elements onto the screen.
 ///
-/// like the background, the border of the grid, help elements.
+/// This draws the background, the border of the grid, help elements.
 class DrawStatic extends DrawStaticInterface {
-  /// External DisplayAdapter object to interact with the screen
+  /// External [DisplayAdapterInterface] to interact with the screen.
   final DisplayAdapterInterface _displayAdapter;
 
-  /// Initialize the object
+  /// Command that draws the static elements onto the screen.
   ///
-  /// @param _displayAdapter external Display
+  /// This draws the background, the border of the grid, help elements.
+  /// @param _displayAdapter External [DisplayAdapterInterface] to interact with the screen.
   DrawStatic(this._displayAdapter);
 
+  /// Execute the command: Print the static elements onto the screen.
   @override
-  /// Print the static elements to the screen
   void execute() {
     _displayAdapter.drawStatic();
   }
