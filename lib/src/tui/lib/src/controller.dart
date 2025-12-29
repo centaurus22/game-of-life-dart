@@ -8,22 +8,26 @@ import 'screen.dart';
 
 /// The Controller which provides methods for a tui interface
 class Controller {
-  /// [Screen] which directly interacts with the terminal
+  /// The [Screen] which directly interacts with the terminal.
   final ScreenInterface _screen;
 
-  /// The width and height of the terminal screen
+  /// The width and height of the terminal screen.
   late Dimensions _dimensions;
 
-  /// The margin between the box border and the upper border of the screen
+  /// The margin between the border of the main box and the upper border
+  /// of the screen.
   final _topMargin = 1;
 
-  /// The margin between the box border and the left border of the screen
+  /// The margin between the border of the main box and the left border
+  /// of the screen.
   final _rightMargin = 2;
 
-  /// The margin between the box border and the right border of the screen
+  /// The margin between border of the main box and the right border
+  /// of the screen.
   final _bottomMargin = 1;
 
-  /// The margin between the box border and the bottom border of the screen
+  /// The margin between border of the main box and the bottom border
+  /// of the screen
   final _leftMargin = 2;
 
   /// The width of the box border
@@ -31,14 +35,16 @@ class Controller {
   /// Only a width of 1 is supported right now
   final int _border = 1;
 
-  /// The Controller which provides methods for a tui interface
+  /// The Controller which provides methods for a tui interface.
   ///
-  /// @param _screen Screen which directly interacts with the terminal
+  /// Requires the [Screen] which directly interacts with the terminal.
   Controller(this._screen) {
     _dimensions = _screen.dimensions;
   }
 
-  /// The usable dimensions of the main box
+  /// The usable dimensions of the main box.
+  /// 
+  /// The main box is the area, where the game grid is drawn.
   Map<String, int> get dimensions {
     final boxDimensions = _calcBoxDimensions();
     return {'x': boxDimensions.width * 2, 'y': boxDimensions.height * 3};
@@ -46,21 +52,21 @@ class Controller {
 
   StreamSubscription<String> get keyStream => _screen.keyStream;
 
-  /// Initializes the terminal
+  /// Initializes the terminal.
   /// 
-  /// * Calculate the usable dimensions of the screen
-  /// * Set the terminal settings
+  /// * Calculate the usable dimensions of the screen.
+  /// * Set the terminal settings.
   void setUp() {
     _calcBoxDimensions();
     _screen.setUp();
   }
 
-  /// Resets the terminal screen to it's default settings
+  /// Resets the terminal screen to it's default settings.
   void tearDown() {
     _screen.tearDown();
   }
 
-  /// Draws a rainbow background onto the terminal screen
+  /// Draws a rainbow background onto the terminal screen.
   void drawBackground() {
     final charsPerColor = _charsPerColor(_dimensions.height);
 
@@ -75,7 +81,7 @@ class Controller {
     }
   }
 
-  /// Draws the main box onto the terminal screen
+  /// Draws the main box onto the terminal screen.
   void drawBox() {
     final boxDimensions = _calcBoxDimensions();
     final boxStartRow = _topMargin;
@@ -118,7 +124,9 @@ class Controller {
     );
   }
 
-  /// Draws the state of the grid onto the terminal screen
+  /// Draws the state of the grid onto the terminal screen.
+  /// 
+  /// The grid is drawn inside the main box.
   void drawGrid(List<List<bool>> grid) {
     final height = (grid.length / 3).ceil();
     final width = (grid[0].length / 2).ceil();

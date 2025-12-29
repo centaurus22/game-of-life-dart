@@ -1,12 +1,12 @@
 import 'src/screen.dart';
 import 'src/controller.dart';
 
-/// A command that draws the static elements of the terminal user interface
+/// A command that draws the static elements of the terminal user interface.
 ///
 /// * The background.
 /// * The box which contains the grid.
 class TuiDrawStatic {
-  /// Execute the command: draw the static elements of the terminal user interface
+  /// Execute the command: draw the static elements of the terminal user interface.
   ///
   /// * The background.
   /// * The box which contains the grid.

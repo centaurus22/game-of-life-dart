@@ -29,7 +29,6 @@ enum Char {
 
   /// Returns a unicode symbol for a number
   ///
-  /// @return The unicode symbol
   ///
   /// The number represents a combination of dead and living cells on a 2x3 grid.
   /// It is calculated by using the grid as a binary number by reading from right

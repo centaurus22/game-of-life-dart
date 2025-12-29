@@ -27,9 +27,7 @@ class TuiDisplayAdapter extends DisplayAdapterInterface {
     tearDown.execute();
   }
 
-  /// List the dimensions of the screen.
-  ///
-  /// @return the [Dimensions].
+  /// List the [Dimensions] of the screen.
   @override
   Dimensions provideDimensions() {
     final listDimensions = TuiListDimensions();
@@ -47,16 +45,16 @@ class TuiDisplayAdapter extends DisplayAdapterInterface {
 
   /// Prints the dynamic elements onto the screen.
   ///
-  /// @parameter grid The [Grid].
+  /// Requires the [Grid].
   @override
   void drawDynamic(Grid grid) {
     final drawDynamic = TuiDrawDynamic();
     drawDynamic.execute(grid.toBools);
   }
 
-  /// Returns a [StreamSubscription] which provides a Stream of pressend keys
+  /// Returns a [StreamSubscription] which provides a Stream of pressend keys.
   /// 
-  /// @returns [StreamSubscription]. The stream contains pressed keys which are printable as utf8 strings.
+  /// The stream contains pressed keys which are printable as utf8 strings.
   @override
   StreamSubscription<String> provideKeyStream() {
     final provideKeyStream = TuiProvideKeyStream();

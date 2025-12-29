@@ -9,9 +9,17 @@ final class Grid {
   //Height and width of the grid
   late Dimensions _dimensions;
 
-  /// Creates the internal two dimensional list of [Cell].
+  ///  Initializes the grid with [Cell]s.
   ///
-  /// @param _dimensions The dimensions of the grid.
+  /// The [Cell]s are randomly alive or dead. Requires the [_dimensions] of
+  /// the grid as [Dimensions]. To initialize the grid with boolean values
+  /// use [Grid.cells].
+  /// 
+  /// Example:
+  /// ```dart
+  /// var area = Dimensions.set(x: 2, y: 4);
+  /// var grid = Grid(area);
+  /// ```
   Grid(this._dimensions) {
     _cells = List.generate(
       _dimensions.y,
@@ -20,11 +28,17 @@ final class Grid {
     );
   }
 
-  /// Set the status of every cell. For testing purposes only.
+  /// Set the life status of every [Cell]. For testing purposes only.
   ///
   /// The height and with of the grid must be both larger than zero.
-  /// @param cells A two-dimensional List of cells
-  /// @throws an ArgumentError if the dimensions are not larger than zero.
+  /// Requires the life status of the [Cell]s as two-dimensional list of booleans.
+  /// Throws an [ArgumentError] if the dimensions are zero or negative.
+  /// 
+  /// Example:
+  /// ```dart
+  /// var cells = [[true, false], [false, false], [true, true]];
+  /// var grid = Grid.cells(cells);
+  /// ```
   Grid.cells(List<List<bool>> cells) {
     _cells = _mapList(cells, (b) => Cell.isAlive(b));
 
@@ -33,12 +47,12 @@ final class Grid {
     _dimensions.x = cells[0].length;
   }
 
-  /// The status of every cell.
+  /// The status of every cell as two dimensional [List] of bools.
   List<List<bool>> get toBools => _mapList(_cells, (c) => c.isAlive);
 
-  /// Calculate the live status of all the cells of the grid.
+  /// Calculates the next generation of all the cells on the [Grid].
   void simulateStep() {
-    List<List<Cell>> cellsTemp = _mapList(_cells, (c) => c.clone());
+    List<List<Cell>> cellsTemp = _mapList(_cells, (c) => c.clone);
 
     for (var row = 0; row < _dimensions.y; row++) {
       for (var column = 0; column < _dimensions.x; column++) {
@@ -53,14 +67,14 @@ final class Grid {
     required List<List<Cell>> cellsTemp,
   }) {
     final neighborsLiving =
-        _isAliveToIntOn(position: position.uL(), cellsTemp: cellsTemp) +
-        _isAliveToIntOn(position: position.uC(), cellsTemp: cellsTemp) +
-        _isAliveToIntOn(position: position.uR(), cellsTemp: cellsTemp) +
-        _isAliveToIntOn(position: position.mL(), cellsTemp: cellsTemp) +
-        _isAliveToIntOn(position: position.mR(), cellsTemp: cellsTemp) +
-        _isAliveToIntOn(position: position.lL(), cellsTemp: cellsTemp) +
-        _isAliveToIntOn(position: position.lC(), cellsTemp: cellsTemp) +
-        _isAliveToIntOn(position: position.lR(), cellsTemp: cellsTemp);
+        _isAliveToIntOn(position: position.uL, cellsTemp: cellsTemp) +
+        _isAliveToIntOn(position: position.uC, cellsTemp: cellsTemp) +
+        _isAliveToIntOn(position: position.uR, cellsTemp: cellsTemp) +
+        _isAliveToIntOn(position: position.mL, cellsTemp: cellsTemp) +
+        _isAliveToIntOn(position: position.mR, cellsTemp: cellsTemp) +
+        _isAliveToIntOn(position: position.lL, cellsTemp: cellsTemp) +
+        _isAliveToIntOn(position: position.lC, cellsTemp: cellsTemp) +
+        _isAliveToIntOn(position: position.lR, cellsTemp: cellsTemp);
 
     _cells[position.y][position.x].simulateStep(
       neighborsLiving: neighborsLiving,

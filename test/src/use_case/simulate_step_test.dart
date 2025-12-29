@@ -1,4 +1,3 @@
-import 'package:game_of_life_dart/src/entity/coordinates.dart';
 import 'package:game_of_life_dart/src/entity/grid.dart';
 import 'package:game_of_life_dart/src/use_case/simulate_step.dart';
 import 'package:test/test.dart';
@@ -10,11 +9,6 @@ void main() {
     simulateStep = SimulateStep();
   });
 
-  test('return grid', () {
-    var grid = simulateStep.execute(Grid(Dimensions.set(x: 3, y: 4)));
-    expect(grid.runtimeType, Grid);
-  });
-
   test('simulate one step', () {
     var grid = Grid.cells([
       [false, false, false, false],
@@ -22,7 +16,8 @@ void main() {
       [false, true, false, false],
       [false, true, false, false],
     ]);
-    expect(simulateStep.execute(grid).toBools, [
+    simulateStep.execute(grid);
+    expect(grid.toBools, [
       [false, false, false, false],
       [false, false, false, false],
       [true, true, true, false],

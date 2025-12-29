@@ -13,49 +13,49 @@ void main() {
     });
 
     test('set position to upper left', () {
-      position = position.uL();
+      position = position.uL;
       expect(position.y, 2);
       expect(position.x, 0);
     });
 
     test('set position to upper center', () {
-      position = position.uC();
+      position = position.uC;
       expect(position.y, 2);
       expect(position.x, 1);
     });
 
     test('set position to upper right', () {
-      position = position.uR();
+      position = position.uR;
       expect(position.y, 2);
       expect(position.x, 2);
     });
 
     test('set position to middle left', () {
-      position = position.mL();
+      position = position.mL;
       expect(position.y, 1);
       expect(position.x, 0);
     });
 
     test('set position to middle right', () {
-      position = position.mR();
+      position = position.mR;
       expect(position.y, 1);
       expect(position.x, 2);
     });
 
     test('set position to lower left', () {
-      position = position.lL();
+      position = position.lL;
       expect(position.y, 0);
       expect(position.x, 0);
     });
 
     test('set position to lower center', () {
-      position = position.lC();
+      position = position.lC;
       expect(position.y, 0);
       expect(position.x, 1);
     });
 
     test('set position to lower right', () {
-      position = position.lR();
+      position = position.lR;
       expect(position.y, 0);
       expect(position.x, 2);
     });

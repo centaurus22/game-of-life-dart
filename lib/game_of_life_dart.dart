@@ -15,21 +15,18 @@ class GameOfLifeDart {
 
   /// Connector to the use cases of the Game of Life
   /// 
-  /// @param _displayAdapter External [DisplayAdapterInterface] to interact with the screen.
+  /// Requires the [DisplayAdapterInterface] to interact with the screen.
   GameOfLifeDart(this._displayAdapter);
 
   /// List the [Dimensions] od the screen.
-  /// 
-  /// @return [Dimensions].
   Dimensions listDimensions() {
     final ListDimensionsInterface useCase = ListDimensions(_displayAdapter);
     return useCase.execute();
   }
 
-  /// Initialize the game [Grid].
+  /// Initialize the game [Grid] and returns it.
   ///
-  /// @param dimensions [Dimensions] of the new [Grid].
-  /// @return the new [Grid].
+  /// Requires the [Dimensions] of the new [Grid].
   Grid initialize(Dimensions dimensions) {
     final InitializeInterface useCase = Initialize();
     return useCase.execute(dimensions);
@@ -43,7 +40,7 @@ class GameOfLifeDart {
 
   /// Draws the static elements onto the screen.
   ///
-  /// Draws the background, the border of the grid, help elements.
+  /// Draws the background, the border of the grid and help elements.
   void drawStatic() {
     final DrawStaticInterface useCase = DrawStatic(_displayAdapter);
     useCase.execute();
@@ -51,7 +48,7 @@ class GameOfLifeDart {
 
   /// Simulate a step of the game.
   ///
-  /// @param The [Grid].
+  /// Requires the [Grid].
   void simulateStep(Grid grid) {
     final SimulateStepInterface useCase = SimulateStep();
     useCase.execute(grid);

@@ -1,19 +1,16 @@
 
-  /// Dimensions
+  /// This represents dimensions.
   /// 
-  /// A width and a height 
+  /// A [width] and a [height].
 class Dimensions {
-  /// The width
+  /// The width.
   final int width;
 
-  /// The height
+  /// The height.
   final int height;
 
-  /// Dimensions
+  /// This represents dimensions.
   /// 
-  /// A width and a height 
-  /// 
-  /// @param width The width
-  /// @param height The height
+  /// Requires a [width] and a [height] as integers.
   Dimensions({required this.width, required this.height});
 }

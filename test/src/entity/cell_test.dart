@@ -35,7 +35,7 @@ void main() {
     });
 
     test('clone_cell', () {
-      cell = cell.clone();
+      cell = cell.clone;
       expect(cell.isAlive, true);
     });
   });
@@ -61,7 +61,7 @@ void main() {
     });
 
     test('clone_cell', () {
-      cell = cell.clone();
+      cell = cell.clone;
       expect(cell.isAlive, false);
     });
   });

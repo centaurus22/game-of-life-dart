@@ -5,8 +5,6 @@ import '../entity/coordinates.dart';
 /// Command that lists the [Dimensions] of the screen.
 abstract class ListDimensionsInterface {
   /// Execute the command: List the [Dimensions].
-  ///
-  /// @return [Dimensions] of the screen.
   Dimensions execute();
 }
 
@@ -15,15 +13,13 @@ class ListDimensions extends ListDimensionsInterface {
   /// External [DisplayAdapterInterface] to interact with the screen.
   final DisplayAdapterInterface _displayAdapter;
 
-  /// Execute the command: List the [Dimensions].
+  /// Command that lists the [Dimensions] of the screen.
   ///
-  /// @param _displayAdapter External [DisplayAdapterInterface] to interact with the screen.
+  /// Requires the [DisplayAdapterInterface] to interact with the screen.
   ListDimensions(this._displayAdapter);
 
+  /// Execute the command: List the [Dimensions].
   @override
-  /// List the [Dimensions] od the screen.
-  ///
-  /// @return [Dimensions].
   Dimensions execute() {
     return _displayAdapter.provideDimensions();
   }

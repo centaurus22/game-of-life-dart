@@ -18,7 +18,7 @@ class DrawStatic extends DrawStaticInterface {
   /// Command that draws the static elements onto the screen.
   ///
   /// This draws the background, the border of the grid, help elements.
-  /// @param _displayAdapter External [DisplayAdapterInterface] to interact with the screen.
+  /// Requires the [DisplayAdapterInterface] to interact with the screen.
   DrawStatic(this._displayAdapter);
 
   /// Execute the command: Print the static elements onto the screen.

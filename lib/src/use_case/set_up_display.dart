@@ -8,12 +8,12 @@ abstract class SetUpDisplayInterface {
 
 /// Command that sets-up the screen which displays the simulation.
 class SetUpDisplay extends SetUpDisplayInterface {
-  /// External [DisplayAdapterInterface] to interact with the screen
+  /// External [DisplayAdapterInterface] to interact with the screen.
   final DisplayAdapterInterface _displayAdapter;
 
   /// Command that sets-up the screen which displays the simulation.
   ///
-  /// @param _displayAdapter External [DisplayAdapterInterface] to interact with the screen.
+  /// Requires the [DisplayAdapterInterface] to interact with the screen.
   SetUpDisplay(this._displayAdapter);
 
   /// Execute the command: Sets-up the screen which displays the simulation.

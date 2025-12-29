@@ -44,6 +44,6 @@ enum Color {
     ];
   }
 
-  /// The amount of colors which are used to draw a rainbow colored background.
+  /// The amount of colors available to draw a rainbow colored background.
   static int get numberBackgroundColors => background().length;
 }

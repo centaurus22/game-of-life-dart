@@ -12,22 +12,41 @@ abstract class Coordinates {
 
 /// A value pair that represents two dimensions.
 final class Dimensions extends Coordinates {
+  /// A value pair that represents two dimensions.
+  /// 
+  /// Use [Dimensions.set] to set the values directly.
+  /// Use [Dimensions.fromMap] to initialize this from a [Map].
   Dimensions();
 
-  ///Initialize this by setting the dimensions directly.
+  /// A value pair that represents two dimensions.
+  /// 
+  /// Initialize this by setting the dimensions directly.
   ///
-  /// @param x The width.
-  /// @param y The height.
-  /// @throws ArgumentError if one of the dimensions are not larger than zero.
+  /// Requires the width [x] and the height [y].
+  /// Throws an [ArgumentError] if one of the dimensions is zero or negative.
+  /// 
+  /// Use [Dimensions.fromMap] to initialize this from a [Map].
+  /// 
+  /// Example: Span an area with 2 elements in the x direction and 4 elements
+  /// in the y-direction:
+  /// ```dart
+  /// var area = Dimensions.set(x: 2, y: 4);
+  /// ```
   Dimensions.set({required int x, required int y}) {
     _x = x;
     _y = y;
   }
 
-  /// Initialize this with a Map with x and y values
+  /// Initialize this from a [Map].
   ///
-  /// @throws ArgumentError if required keys are not in the map.
-  /// @returns this object
+  /// Throws an [ArgumentError] if the required keys `x` and `y` are
+  /// not in the [Map] or one of the dimensions is zero or negative.
+  /// 
+  /// Example:
+  /// ```dart
+  /// Map<String,int> dimensionMap = {'x': 2, 'y': 4};
+  /// var area = Dimensions.fromMap(dimensionMap);
+  /// ```
   static Dimensions fromMap(Map<String, int> dimensions) {
     if (!dimensions.containsKey('x')) {
       _missingValue('x');
@@ -40,10 +59,18 @@ final class Dimensions extends Coordinates {
     return Dimensions.set(x: dimensions['x']!, y: dimensions['y']!);
   }
 
-  /// The width of this.
+  /// The width of this [Dimensions].
   ///
-  /// Must be called than this was initialized by the default constructor.
-  /// @throws [ArgumentError] if it ist not larger than zero.
+  /// Must be called when this was initialized by the default constructor.
+  /// 
+  /// Requires the value as an integer.
+  /// Throws an [ArgumentError] if [x] is zero or negative.
+  /// 
+  /// Example:
+  /// ```dart
+  /// var area = Dimensions();
+  /// area.x = 5;
+  /// ```
   set x(int x) {
     if (x <= 0) {
       _wrongValue('x');
@@ -51,10 +78,18 @@ final class Dimensions extends Coordinates {
     _x = x;
   }
 
-  /// The height of this.
+  /// The width of this [Dimensions].
   ///
-  /// Must be called than this was initialized by the default constructor.
-  /// @throws [ArgumentError] if it ist not larger than zero.
+  /// Must be called when this was initialized by the default constructor.
+  /// 
+  /// Requires the value as an integer.
+  /// Throws an [ArgumentError] if [y] is zero or negative.
+  /// 
+  /// Example:
+  /// ```dart
+  /// var area = Dimensions();
+  /// area.y = 5;
+  /// ```
   set y(int y) {
     if (y <= 0) {
       _wrongValue('y');
@@ -75,10 +110,9 @@ final class Dimensions extends Coordinates {
 
 /// A value pair that represents a coordinate pair.
 final class Position extends Coordinates {
-  ///Initialize this
+  /// A value pair that represents a coordinate pair.
   ///
-  ///@parameter x The column
-  ///@parameter y The row
+  /// Requires an [x] value and a [y] value.
   Position.set({required int x, required int y}) {
     _x = x;
     _y = y;
@@ -88,42 +122,26 @@ final class Position extends Coordinates {
   set y(int y) => _y = y;
 
   /// A new [Position] one row above and one column to the left (upper left)
-  ///
-  /// @return The new position
-  Position uL() => Position.set(x: _x - 1, y: _y + 1);
+  Position get uL => Position.set(x: _x - 1, y: _y + 1);
 
   /// A new [Position]  one row above (upper center)
-  ///
-  /// @return The new position
-  Position uC() => Position.set(x: _x, y: _y + 1);
+  Position get uC => Position.set(x: _x, y: _y + 1);
 
   /// A new [Position] one row above and one column to the right (upper right)
-  ///
-  /// @return The new position
-  Position uR() => Position.set(x: _x + 1, y: _y + 1);
+  Position get uR => Position.set(x: _x + 1, y: _y + 1);
 
   /// A new [Position] one column to the left (middle left)
-  ///
-  /// @return The new position
-  Position mL() => Position.set(x: _x - 1, y: _y);
+  Position get mL => Position.set(x: _x - 1, y: _y);
 
   /// A new [Position] one column to the right (middle right)
-  ///
-  /// @return The new position
-  Position mR() => Position.set(x: _x + 1, y: _y);
+  Position get mR => Position.set(x: _x + 1, y: _y);
 
   /// A new [Position] one row down and one column to the left (lower left)
-  ///
-  /// @return The new position
-  Position lL() => Position.set(x: _x - 1, y: _y - 1);
+  Position get lL => Position.set(x: _x - 1, y: _y - 1);
 
   /// A new [Position] one row down and one column to the left (lower center)
-  ///
-  /// @return The new position
-  Position lC() => Position.set(x: _x, y: _y - 1);
+  Position get lC => Position.set(x: _x, y: _y - 1);
 
   /// A new [Position] one row down and one column to the left (lower right)
-  ///
-  /// @return The new position
-  Position lR() => Position.set(x: _x + 1, y: _y - 1);
+  Position get lR => Position.set(x: _x + 1, y: _y - 1);
 }

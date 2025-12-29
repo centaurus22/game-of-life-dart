@@ -13,7 +13,7 @@ class TearDownDisplay extends TearDownDisplayInterface {
 
   /// Command that resets the screen back to default values.
   ///
-  /// @param _displayAdapter External [DisplayAdapterInterface] to interact with the screen.
+  /// Requires the [DisplayAdapterInterface] to interact with the screen.
   TearDownDisplay(this._displayAdapter);
 
   /// Execute the command: Reset the screen back to default values.

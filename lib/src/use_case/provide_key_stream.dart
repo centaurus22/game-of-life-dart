@@ -6,7 +6,7 @@ import 'display_adapter_interface.dart';
 abstract class ProvideKeyStreamInterface {
   /// Execute the command: Return a [StreamSubscription].
   /// 
-  /// @returns [StreamSubscription]. The stream contains pressed keys which are printable as utf8 strings.
+  /// The stream contains pressed keys which are printable as utf8 strings.
   StreamSubscription<String> execute();
 }
 
@@ -17,12 +17,12 @@ final class ProvideKeyStream implements ProvideKeyStreamInterface {
 
   /// Command which returns a [StreamSubscription] which provides a Stream of pressend keys.
   /// 
-  /// @param _displayAdapter External [DisplayAdapterInterface] to interact with the screen.
+  /// Requires the [DisplayAdapterInterface] to interact with the screen.
   ProvideKeyStream(this._displayAdapter);
 
   /// Execute the command: Return a [StreamSubscription].
   /// 
-  /// @return [StreamSubscription]. The stream contains pressed keys which are printable as utf8 strings.
+  /// The stream contains pressed keys which are printable as utf8 strings.
   @override
   StreamSubscription<String> execute() {
     return _displayAdapter.provideKeyStream();
