@@ -14,7 +14,7 @@ final class Grid {
   /// The [Cell]s are randomly alive or dead. Requires the [_dimensions] of
   /// the grid as [Dimensions]. To initialize the grid with boolean values
   /// use [Grid.cells].
-  /// 
+  ///
   /// Example:
   /// ```dart
   /// var area = Dimensions.set(x: 2, y: 4);
@@ -33,7 +33,7 @@ final class Grid {
   /// The height and with of the grid must be both larger than zero.
   /// Requires the life status of the [Cell]s as two-dimensional list of booleans.
   /// Throws an [ArgumentError] if the dimensions are zero or negative.
-  /// 
+  ///
   /// Example:
   /// ```dart
   /// var cells = [[true, false], [false, false], [true, true]];

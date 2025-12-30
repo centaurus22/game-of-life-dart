@@ -9,27 +9,43 @@ import 'package:game_of_life_dart/src/tui/lib/src/dimensions.dart';
 abstract interface class ScreenInterface {
   /// The [Dimensions] of the screen.
   Dimensions get dimensions;
+
   /// A [StreamSubscription] which provides pressed keys on the keyboard.
-  /// 
+  ///
   /// Returns a [StreamSubscription] wich provides a [List] of pressed printable keys
   /// represented as unicode strings.
   StreamSubscription<String> get keyStream;
+
   /// Sets up the screen.
   void setUp();
+
   /// Resets the screen to default.
   void tearDown();
+
   /// Switches the foreground color.
   void switchToColor(int number);
+
   /// Sets the cursor position and writes a string to the terminal screen.
   void writeAt({required int column, required int row, required String text});
+
   /// Sets the position of the text cursor.
   void cursorPosition({required int column, required int row});
+
   /// Writes a [text] to the current position on the terminal screen.
   void write(String text);
 }
 
+class ScreenFactory {
+  static Screen createScreen() {
+    if (Platform.isWindows) {
+      return WindowsScreen();
+    }
+    return UnixScreen();
+  }
+}
+
 /// This interacts directly with the terminal screen.
-class Screen implements ScreenInterface {
+abstract class Screen implements ScreenInterface {
   /// The [Console].
   final _console = Console();
 
@@ -53,7 +69,7 @@ class Screen implements ScreenInterface {
     _console.resetCursorPosition();
     _console.hideCursor();
     stdin.echoMode = false;
-    stdin.lineMode = false;
+    _osSpecificSetUp();
   }
 
   /// Resets the terminal screen to default.
@@ -62,7 +78,8 @@ class Screen implements ScreenInterface {
     _console.showCursor();
     _console.clearScreen();
     _console.resetCursorPosition();
-    stdin.echoMode = true;
+    _console.resetColorAttributes();
+    _osSpecificTearDown();
   }
 
   /// Switches the foreground color.
@@ -78,7 +95,7 @@ class Screen implements ScreenInterface {
   ///
   /// This function requires the [column] and the [row] where the string is printed
   /// and the [text] string which is printed onto the screen.
-  /// 
+  ///
   /// Example:
   /// ```dart:
   /// var screen = Screen();
@@ -108,4 +125,22 @@ class Screen implements ScreenInterface {
   void write(String text) {
     stdout.write(text);
   }
+
+  void _osSpecificSetUp() {}
+  void _osSpecificTearDown() {}
 }
+
+class UnixScreen extends Screen {
+  @override
+  void _osSpecificSetUp() {
+    stdin.lineMode = false;
+  }
+
+  @override
+  void _osSpecificTearDown() {
+    stdin.echoMode = true;
+    stdin.lineMode = true;
+  }
+}
+
+class WindowsScreen extends Screen {}
