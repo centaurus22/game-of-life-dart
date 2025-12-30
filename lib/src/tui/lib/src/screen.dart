@@ -138,6 +138,7 @@ class UnixScreen extends Screen {
 
   @override
   void _osSpecificTearDown() {
+    stdin.echoMode = true;
     stdin.lineMode = true;
   }
 }
