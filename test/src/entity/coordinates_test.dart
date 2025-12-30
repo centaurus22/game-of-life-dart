@@ -1,4 +1,4 @@
-import 'package:game_of_life_dart/src/entities/coordinates.dart';
+import 'package:game_of_life_dart/src/entity/coordinates.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -13,49 +13,49 @@ void main() {
     });
 
     test('set position to upper left', () {
-      position = position.uL();
+      position = position.uL;
       expect(position.y, 2);
       expect(position.x, 0);
     });
 
     test('set position to upper center', () {
-      position = position.uC();
+      position = position.uC;
       expect(position.y, 2);
       expect(position.x, 1);
     });
 
     test('set position to upper right', () {
-      position = position.uR();
+      position = position.uR;
       expect(position.y, 2);
       expect(position.x, 2);
     });
 
     test('set position to middle left', () {
-      position = position.mL();
+      position = position.mL;
       expect(position.y, 1);
       expect(position.x, 0);
     });
 
     test('set position to middle right', () {
-      position = position.mR();
+      position = position.mR;
       expect(position.y, 1);
       expect(position.x, 2);
     });
 
     test('set position to lower left', () {
-      position = position.lL();
+      position = position.lL;
       expect(position.y, 0);
       expect(position.x, 0);
     });
 
     test('set position to lower center', () {
-      position = position.lC();
+      position = position.lC;
       expect(position.y, 0);
       expect(position.x, 1);
     });
 
     test('set position to lower right', () {
-      position = position.lR();
+      position = position.lR;
       expect(position.y, 0);
       expect(position.x, 2);
     });
@@ -91,6 +91,16 @@ void main() {
         dimension = Dimensions.set(x: 2, y: 3);
         expect(dimension.x, 2);
         expect(dimension.y, 3);
+      });
+      test('convert from map', () {
+        final dimensions = Dimensions.fromMap({'x': 4, 'y': 3});
+        expect(dimensions.x, 4);
+      });
+      test('throw error if no x value', () {
+        expect(() => Dimensions.fromMap({'y': 3}), throwsArgumentError);
+      });
+      test('throw error if no y value', () {
+        expect(() => Dimensions.fromMap({'x': 3}), throwsArgumentError);
       });
     });
   });

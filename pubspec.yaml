@@ -1,12 +1,13 @@
 name: game_of_life_dart
-version: 0.0.0
-description: Extended Conway's Game of Live as a terminal based application. Makes heavy use of Unicode symbols for boxes and grid. Multiple zoom levels.
+version: 0.1.0
+description: An Extended Conway's Game of Live as a terminal based application. Makes heavy use of Unicode symbols for boxes and grid. Multiple zoom levels.
 repository: https://github.com/centaurus22/game-of-life-dart
 
 environment:
   sdk: ^3.9.3
 
 dependencies:
+  dart_console: ^4.1.2
 
 dev_dependencies:
   coverage: ^1.15.0
