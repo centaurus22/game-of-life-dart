@@ -28,8 +28,17 @@ abstract interface class ScreenInterface {
   void write(String text);
 }
 
+class Screenfactory {
+  static Screen createScreen() {
+    if (Platform.isWindows) {
+      return WindowsScreen();
+    } 
+    return UnixScreen();
+  }
+}
+
 /// This interacts directly with the terminal screen.
-class Screen implements ScreenInterface {
+abstract class Screen implements ScreenInterface {
   /// The [Console].
   final _console = Console();
 
@@ -53,7 +62,7 @@ class Screen implements ScreenInterface {
     _console.resetCursorPosition();
     _console.hideCursor();
     stdin.echoMode = false;
-    stdin.lineMode = false;
+    _osSpecificSetUp();
   }
 
   /// Resets the terminal screen to default.
@@ -62,7 +71,8 @@ class Screen implements ScreenInterface {
     _console.showCursor();
     _console.clearScreen();
     _console.resetCursorPosition();
-    stdin.echoMode = true;
+    _console.resetColorAttributes();
+    _osSpecificTearDown();
   }
 
   /// Switches the foreground color.
@@ -108,4 +118,21 @@ class Screen implements ScreenInterface {
   void write(String text) {
     stdout.write(text);
   }
+
+  void _osSpecificSetUp() {}
+  void _osSpecificTearDown() {}
 }
+
+class UnixScreen extends Screen {
+  @override
+  void _osSpecificSetUp() {
+      stdin.lineMode = false;
+  }
+
+  @override
+  void _osSpecificTearDown() {
+      stdin.lineMode = true;
+  }
+}
+
+class WindowsScreen extends Screen {}

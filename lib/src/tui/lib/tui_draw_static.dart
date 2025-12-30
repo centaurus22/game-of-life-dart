@@ -1,5 +1,5 @@
-import 'src/screen.dart';
 import 'src/controller.dart';
+import 'src/screen.dart';
 
 /// A command that draws the static elements of the terminal user interface.
 ///
@@ -11,7 +11,7 @@ class TuiDrawStatic {
   /// * The background.
   /// * The box which contains the grid.
   void execute() {
-    final controller = Controller(Screen());
+    final controller = Controller(Screenfactory.createScreen());
     controller.drawBackground();
     controller.drawBox();
   }
