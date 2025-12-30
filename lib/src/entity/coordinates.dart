@@ -13,20 +13,20 @@ abstract class Coordinates {
 /// A value pair that represents two dimensions.
 final class Dimensions extends Coordinates {
   /// A value pair that represents two dimensions.
-  /// 
+  ///
   /// Use [Dimensions.set] to set the values directly.
   /// Use [Dimensions.fromMap] to initialize this from a [Map].
   Dimensions();
 
   /// A value pair that represents two dimensions.
-  /// 
+  ///
   /// Initialize this by setting the dimensions directly.
   ///
   /// Requires the width [x] and the height [y].
   /// Throws an [ArgumentError] if one of the dimensions is zero or negative.
-  /// 
+  ///
   /// Use [Dimensions.fromMap] to initialize this from a [Map].
-  /// 
+  ///
   /// Example: Span an area with 2 elements in the x direction and 4 elements
   /// in the y-direction:
   /// ```dart
@@ -41,7 +41,7 @@ final class Dimensions extends Coordinates {
   ///
   /// Throws an [ArgumentError] if the required keys `x` and `y` are
   /// not in the [Map] or one of the dimensions is zero or negative.
-  /// 
+  ///
   /// Example:
   /// ```dart
   /// Map<String,int> dimensionMap = {'x': 2, 'y': 4};
@@ -62,10 +62,10 @@ final class Dimensions extends Coordinates {
   /// The width of this [Dimensions].
   ///
   /// Must be called when this was initialized by the default constructor.
-  /// 
+  ///
   /// Requires the value as an integer.
   /// Throws an [ArgumentError] if [x] is zero or negative.
-  /// 
+  ///
   /// Example:
   /// ```dart
   /// var area = Dimensions();
@@ -81,10 +81,10 @@ final class Dimensions extends Coordinates {
   /// The width of this [Dimensions].
   ///
   /// Must be called when this was initialized by the default constructor.
-  /// 
+  ///
   /// Requires the value as an integer.
   /// Throws an [ArgumentError] if [y] is zero or negative.
-  /// 
+  ///
   /// Example:
   /// ```dart
   /// var area = Dimensions();

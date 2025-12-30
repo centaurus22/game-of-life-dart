@@ -14,7 +14,7 @@ class GameOfLifeDart {
   final DisplayAdapterInterface _displayAdapter;
 
   /// Connector to the use cases of the Game of Life
-  /// 
+  ///
   /// Requires the [DisplayAdapterInterface] to interact with the screen.
   GameOfLifeDart(this._displayAdapter);
 

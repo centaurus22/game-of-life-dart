@@ -9,21 +9,28 @@ import 'package:game_of_life_dart/src/tui/lib/src/dimensions.dart';
 abstract interface class ScreenInterface {
   /// The [Dimensions] of the screen.
   Dimensions get dimensions;
+
   /// A [StreamSubscription] which provides pressed keys on the keyboard.
-  /// 
+  ///
   /// Returns a [StreamSubscription] wich provides a [List] of pressed printable keys
   /// represented as unicode strings.
   StreamSubscription<String> get keyStream;
+
   /// Sets up the screen.
   void setUp();
+
   /// Resets the screen to default.
   void tearDown();
+
   /// Switches the foreground color.
   void switchToColor(int number);
+
   /// Sets the cursor position and writes a string to the terminal screen.
   void writeAt({required int column, required int row, required String text});
+
   /// Sets the position of the text cursor.
   void cursorPosition({required int column, required int row});
+
   /// Writes a [text] to the current position on the terminal screen.
   void write(String text);
 }
@@ -32,7 +39,7 @@ class Screenfactory {
   static Screen createScreen() {
     if (Platform.isWindows) {
       return WindowsScreen();
-    } 
+    }
     return UnixScreen();
   }
 }
@@ -88,7 +95,7 @@ abstract class Screen implements ScreenInterface {
   ///
   /// This function requires the [column] and the [row] where the string is printed
   /// and the [text] string which is printed onto the screen.
-  /// 
+  ///
   /// Example:
   /// ```dart:
   /// var screen = Screen();
@@ -126,12 +133,12 @@ abstract class Screen implements ScreenInterface {
 class UnixScreen extends Screen {
   @override
   void _osSpecificSetUp() {
-      stdin.lineMode = false;
+    stdin.lineMode = false;
   }
 
   @override
   void _osSpecificTearDown() {
-      stdin.lineMode = true;
+    stdin.lineMode = true;
   }
 }
 

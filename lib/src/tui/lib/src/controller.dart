@@ -43,7 +43,7 @@ class Controller {
   }
 
   /// The usable dimensions of the main box.
-  /// 
+  ///
   /// The main box is the area, where the game grid is drawn.
   Map<String, int> get dimensions {
     final boxDimensions = _calcBoxDimensions();
@@ -53,7 +53,7 @@ class Controller {
   StreamSubscription<String> get keyStream => _screen.keyStream;
 
   /// Initializes the terminal.
-  /// 
+  ///
   /// * Calculate the usable dimensions of the screen.
   /// * Set the terminal settings.
   void setUp() {
@@ -125,7 +125,7 @@ class Controller {
   }
 
   /// Draws the state of the grid onto the terminal screen.
-  /// 
+  ///
   /// The grid is drawn inside the main box.
   void drawGrid(List<List<bool>> grid) {
     final height = (grid.length / 3).ceil();

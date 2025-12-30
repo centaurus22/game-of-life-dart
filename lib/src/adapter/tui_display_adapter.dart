@@ -53,7 +53,7 @@ class TuiDisplayAdapter extends DisplayAdapterInterface {
   }
 
   /// Returns a [StreamSubscription] which provides a Stream of pressend keys.
-  /// 
+  ///
   /// The stream contains pressed keys which are printable as utf8 strings.
   @override
   StreamSubscription<String> provideKeyStream() {

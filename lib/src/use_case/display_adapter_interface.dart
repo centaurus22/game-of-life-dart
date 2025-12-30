@@ -12,7 +12,7 @@ abstract class DisplayAdapterInterface {
   void tearDown();
 
   /// Returns the [Dimensions] of the screen in terms of grid cells.
-  /// 
+  ///
   /// The simulation lives in the grid cells.
   Dimensions provideDimensions();
 
@@ -22,12 +22,12 @@ abstract class DisplayAdapterInterface {
   void drawStatic();
 
   /// Prints the dynamic elements onto the screen.
-  /// 
+  ///
   /// Requires the simulation [grid].
   void drawDynamic(Grid grid);
 
   /// Provides a [StreamSubscription] for a stream with pressed keys.
-  /// 
+  ///
   /// Printable pressed keys are represented as utf8 strings.
   StreamSubscription<String> provideKeyStream();
 }

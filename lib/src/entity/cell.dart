@@ -6,7 +6,7 @@ final class Cell {
   late bool _isAlive;
 
   /// One cell in Conway's game of life.
-  /// 
+  ///
   /// Set a random life status on initializing.
   /// Set a life status directly during initialization with [Cell.isAlive].
   Cell() {
@@ -14,15 +14,15 @@ final class Cell {
   }
 
   /// One cell in Conway's game of life.
-  /// 
+  ///
   /// Set a value for testing purposes
   ///
   /// [_isAlive] determines whether this [Cell] is alive.
-  /// 
+  ///
   /// Example: Create a living [Cell] with
   /// ```dart
   /// var cell = Cell.isAlive(true);
-  /// print(cell.isAlive); // true 
+  /// print(cell.isAlive); // true
   /// ```
   Cell.isAlive(this._isAlive);
 
@@ -37,7 +37,7 @@ final class Cell {
   /// Calculates the live status by setting the current number of living neighbor [Cell]s.
   ///
   /// A cell can have 0 to 8 living neighbors.
-  /// 
+  ///
   /// Example:
   /// ```dart
   /// var cell = Cell.isAlive(true);
