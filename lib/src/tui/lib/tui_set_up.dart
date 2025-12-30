@@ -5,7 +5,7 @@ import 'src/controller.dart';
 class TuiSetUp {
   ///Execute the command: Set up the terminal.
   void execute() {
-    final controller = Controller(Screenfactory.createScreen());
+    final controller = Controller(ScreenFactory.createScreen());
     controller.setUp();
   }
 }

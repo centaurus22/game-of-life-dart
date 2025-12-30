@@ -9,7 +9,7 @@ class TuiProvideKeyStream {
   ///
   /// The stream contains pressed and printable keys as utf8 strings.
   StreamSubscription<String> execute() {
-    final controller = Controller(Screenfactory.createScreen());
+    final controller = Controller(ScreenFactory.createScreen());
     return controller.keyStream;
   }
 }

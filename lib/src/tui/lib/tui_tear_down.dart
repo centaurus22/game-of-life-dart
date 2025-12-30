@@ -5,7 +5,7 @@ import 'src/controller.dart';
 class TuiTearDown {
   /// Execute the command: Reset the terminal back to the default values.
   void execute() {
-    final controller = Controller(Screenfactory.createScreen());
+    final controller = Controller(ScreenFactory.createScreen());
     controller.tearDown();
   }
 }

@@ -11,7 +11,7 @@ class TuiListDimensions {
   ///
   /// Returns a [Map] with the calculated dimensions of the grid area.
   Map<String, int> execute() {
-    final controller = Controller(Screenfactory.createScreen());
+    final controller = Controller(ScreenFactory.createScreen());
     return controller.dimensions;
   }
 }

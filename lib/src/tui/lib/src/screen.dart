@@ -35,7 +35,7 @@ abstract interface class ScreenInterface {
   void write(String text);
 }
 
-class Screenfactory {
+class ScreenFactory {
   static Screen createScreen() {
     if (Platform.isWindows) {
       return WindowsScreen();

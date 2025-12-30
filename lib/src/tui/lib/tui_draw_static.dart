@@ -11,7 +11,7 @@ class TuiDrawStatic {
   /// * The background.
   /// * The box which contains the grid.
   void execute() {
-    final controller = Controller(Screenfactory.createScreen());
+    final controller = Controller(ScreenFactory.createScreen());
     controller.drawBackground();
     controller.drawBox();
   }
